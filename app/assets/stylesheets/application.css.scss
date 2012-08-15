@@ -11,6 +11,9 @@
  *= require_self
  *= require_tree .
 */
+* {
+  font-family: 'Open Sans', sans-serif;
+}
 .brand {
   float: left;
   padding-right: 8px;
