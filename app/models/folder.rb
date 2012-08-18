@@ -3,13 +3,16 @@ class Folder
   include Mongoid::Timestamps
 
   belongs_to :user
-  embeds_many :files
+  embeds_many :records
+  accepts_nested_attributes_for :records, :allow_destroy => true, :reject_if => proc {|r| r['name'].blank?}
 
   field :name, :type => String
 
-  index({ name: 1, user_id: 1, "files.name" => 1, "files.access_count" => 1 }, { background: true })
+  index({ name: 1, user_id: 1, "records.name" => 1, "records.access_count" => 1 }, { background: true })
 
   validates_presence_of :name
 
-  attr_accessible :name, :created_at, :updated_at
+  attr_accessible :name, :created_at, :updated_at, :user_id, :records_attributes
+
+  default_scope order_by(:name => :asc)
 end

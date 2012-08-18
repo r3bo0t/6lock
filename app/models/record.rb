@@ -1,8 +1,8 @@
-class File
+class Record
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  embedded_in :folder
+  embedded_in :folder, inverse_of: :records
 
   field :name, :type => String
   field :username, :type => String, :default => ""
@@ -15,4 +15,5 @@ class File
 
   attr_accessible :name, :username, :password, :url, :notes, :created_at, :updated_at
 
+  default_scope order_by(:name => :asc)
 end
