@@ -1,1 +1,18 @@
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
+
+<p>
+<% @folders.each do |folder| %>
+  <%= folder.name %><br>
+  <% folder.records.each do |record| %>
+    &nbsp;&nbsp;<%= record.name %><br>
+  <% end %>
+  <br>
+<% end %>
+</p>
+
+<p>
+<strong>Often used</strong><br>
+<% @often_used.each do |record| %>
+  <%= record.name %><br>
+<% end %>
+</p>

@@ -16,4 +16,17 @@ class Record
   attr_accessible :name, :username, :password, :url, :notes, :created_at, :updated_at
 
   default_scope order_by(:name => :asc)
+
+  class << self
+    def often_used(folders)
+      records = extract_records_from(folders).sort_by(&:access_count).reverse
+      records[0..2] if records.length > 3
+    end
+
+    def extract_records_from(folders)
+      records = []
+      folders.each {|f| records << f.records}
+      records.flatten
+    end
+  end
 end
