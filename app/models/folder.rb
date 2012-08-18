@@ -8,7 +8,7 @@ class Folder
 
   field :name, :type => String
 
-  index({ name: 1, user_id: 1, "records.name" => 1, "records.access_count" => 1 }, { background: true })
+  index({name: 1, user_id: 1, "records.name" => 1}, {background: true})
 
   validates_presence_of :name
 
