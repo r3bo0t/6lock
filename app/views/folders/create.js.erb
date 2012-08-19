@@ -1,0 +1,5 @@
+<% if @folder.valid? %>
+  alert("<%= escape_javascript("#{@folder.user.name} #{@folder.name}") %>")
+<% else %>
+  alert("Invalid name")
+<% end %>

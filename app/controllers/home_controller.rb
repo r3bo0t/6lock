@@ -4,5 +4,6 @@ class HomeController < ApplicationController
   def index
     @folders = current_user.folders
     @often_used = Record.often_used(@folders)
+    @folder = Folder.new
   end
 end
