@@ -3,24 +3,22 @@
 <p>
 <strong>New folder</strong>
 <%= form_for @folder, :remote => true do |f| %>
-  <%# @folder.errors.full_messages.each do |msg| %>
-    <!--p><%#= msg %></p-->
-  <%# end %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.submit %>
 <% end %>
 </p>
 
-<p>
 <% @folders.each do |folder| %>
-  <%= folder.name %><br>
+  <p>
+  <%= folder.name %>
+  <%= link_to 'Destroy', folder, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_folder' %><br>
   <% folder.records.each do |record| %>
     &nbsp;&nbsp;<%= record.name %><br>
   <% end %>
-  <br>
+  </p>
 <% end %>
-</p>
+
 
 <p>
 <strong>Often used</strong><br>

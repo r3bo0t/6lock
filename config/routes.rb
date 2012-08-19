@@ -6,7 +6,7 @@ Sixlock::Application.routes.draw do
   devise_for :users
 
   resources :records, :only => [:show]
-  resources :folders, :only => [:create]
+  resources :folders, :only => [:create, :destroy]
 
   match 'home' => 'home#index', :as => :home, :via => :get
 end
