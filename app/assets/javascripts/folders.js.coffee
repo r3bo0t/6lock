@@ -4,4 +4,4 @@
 
 $ ->
   $('.delete_folder').bind 'ajax:success', ->
-    alert "Deleted"
+    $(this).parent().remove()

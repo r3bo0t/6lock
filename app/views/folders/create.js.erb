@@ -1,5 +1,12 @@
 <% if @folder.valid? %>
-  alert("<%= escape_javascript("#{@folder.user.name} #{@folder.name}") %>")
+  var content = '<p><%= @folder.name %> <%= link_to 'Destroy', @folder, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_folder' %><br></p>'
+  $(function() {
+    $('#folder_name').val('')
+    $('#folders').prepend(content)
+    $('.delete_folder').bind('ajax:success', function() {
+      $(this).parent().remove()
+    })
+  })
 <% else %>
   alert("Invalid name")
 <% end %>
