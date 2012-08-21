@@ -23,6 +23,11 @@ class Record
       records[0..2] if records.length > 3
     end
 
+    def get_record_from(folders, record_id)
+      records = extract_records_from(folders)
+      records.select {|r| r.id.to_s == record_id}.first
+    end
+
     def extract_records_from(folders)
       records = []
       folders.each {|f| records << f.records}

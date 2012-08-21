@@ -1,2 +1,29 @@
-<h1>Files#show</h1>
-<p>Find me in app/views/files/show.html.erb</p>
+<p>
+<strong>New folder</strong>
+<%= form_for @folder, :remote => true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
+</p>
+
+<div id="folders">
+<% @folders.each do |folder| %>
+  <p>
+  <%= folder.name %>
+  <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br>
+  <% folder.records.each do |record| %>
+    &nbsp;&nbsp;<%= link_to record.name, record %><br>
+  <% end %>
+  </p>
+<% end %>
+</div>
+
+<% if @record %>
+<strong>Record</strong><br>
+  <%= @record.name %><br>
+  <%= @record.username %><br>
+  <%= @record.password %><br>
+  <%= @record.url %><br>
+  <%= @record.notes %>
+<% end %>
