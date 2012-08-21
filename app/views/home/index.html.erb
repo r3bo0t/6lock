@@ -9,13 +9,27 @@
 <% end %>
 </p>
 
+<p>
+<strong>New record</strong>
+<%= form_for @record, :remote => true do |f| %>
+  <%= hidden_field_tag 'folder_id' %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
+</p>
+
 <div id="folders">
-<% @folders.each do |folder| %>
+<% @folders.each_with_index do |folder, i| %>
   <p>
-  <%= folder.name %>
-  <%= link_to 'Destroy', folder, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_folder' %><br>
+  <% if i == @current_folder %>
+    <em><%= folder.name %></em>
+  <% else %>
+    <%= folder.name %>
+  <% end %>
+  <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br>
   <% folder.records.each do |record| %>
-    &nbsp;&nbsp;<%= record.name %><br>
+    &nbsp;&nbsp;<%= link_to record.name, record %><br>
   <% end %>
   </p>
 <% end %>

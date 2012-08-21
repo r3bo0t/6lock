@@ -5,3 +5,5 @@
 $ ->
   $('.delete_folder').bind 'ajax:success', ->
     $(this).parent().remove()
+  $('.delete_record').bind 'ajax:success', ->
+    $(this).parent().remove()
