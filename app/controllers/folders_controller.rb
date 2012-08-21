@@ -13,9 +13,12 @@ class FoldersController < ApplicationController
   def update
   end
 
+  def edit
+  end
+
   def destroy
     @folder = Folder.find(params[:id])
-    @folder.destroy
+    @folder.destroy if @folder.user_id == current_user.id
 
     respond_to do |format|
       format.js { render :nothing => true }
