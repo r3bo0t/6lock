@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @folders = current_user.folders
-    @current_folder = 0
+    @current_folder = @folders.first
     @often_used = Record.often_used(@folders)
     @folder = Folder.new
     @record = Record.new

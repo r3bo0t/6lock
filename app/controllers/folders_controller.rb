@@ -4,6 +4,7 @@ class FoldersController < ApplicationController
   def create
     @folder = current_user.folders.build(params[:folder])
     @folder.save
+    @record = Record.new
 
     respond_to do |format|
       format.js
