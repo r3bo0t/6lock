@@ -9,12 +9,19 @@ class RecordsController < ApplicationController
   end
 
   def create
-#    @record = current_user.folders.build(params[:folder])
-#    @folder.save
+    @folder = Folder.where(:id => params[:folder_id], :user_id => current_user.id).first
+    if @folder
+      @record = @folder.records.build(params[:record])
+      @record.save
 
-#    respond_to do |format|
-#      format.js
-#    end
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js { render :nothing => true }
+      end
+    end
   end
 
   def update
@@ -24,11 +31,11 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-#    @folder = Folder.find(params[:id])
-#    @folder.destroy if @folder.user_id == current_user.id
+    @record = Record.get_record_from(Folder.all, params[:id])
+    @record.destroy if @record.folder.user_id == current_user.id
 
-#    respond_to do |format|
-#      format.js { render :nothing => true }
-#    end
-#  end
+    respond_to do |format|
+      format.js { render :nothing => true }
+    end
+  end
 end

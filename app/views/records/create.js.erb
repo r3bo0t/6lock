@@ -1,0 +1,12 @@
+<% if @record.valid? %>
+  var content = '<p>&nbsp;&nbsp;<%= @record.name %> <%= link_to 'Destroy', @record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %></p>'
+  $(function() {
+    $('.record_name').val('')
+    $('#folder_<%= @folder.id %>').prepend(content)
+    $('.delete_record').bind('ajax:success', function() {
+      $(this).parent().remove()
+    })
+  })
+<% else %>
+  alert("Invalid name")
+<% end %>
