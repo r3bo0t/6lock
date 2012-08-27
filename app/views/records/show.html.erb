@@ -1,3 +1,5 @@
+<h1><%= @current_record.name %></h1>
+
 <p>
 <strong>New folder</strong>
 <%= form_for @folder, :remote => true do |f| %>
@@ -8,22 +10,35 @@
 </p>
 
 <div id="folders">
-<% @folders.each do |folder| %>
-  <p>
-  <%= folder.name %>
-  <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br>
-  <% folder.records.each do |record| %>
-    &nbsp;&nbsp;<%= link_to record.name, record %><br>
+  <% @folders.each do |folder| %>
+    <div>
+    <% if folder == @current_folder %>
+      <em><%= folder.name %></em>
+    <% else %>
+      <%= folder.name %>
+    <% end %>
+    <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br><br>
+    <strong>New record</strong>
+    <%= form_for @record, :remote => true do |f| %>
+      <%= hidden_field_tag 'folder_id', folder.id, :id => nil, :class => 'folder_id' %>
+      <%= f.label :name %>
+      <%= f.text_field :name, :id => nil, :class => 'record_name' %>
+      <%= f.submit %>
+    <% end %>
+    <div id='<%= "folder_#{folder.id}" %>'>
+      <% folder.records.each do |record| %>
+        <p>
+          &nbsp;&nbsp;<%= link_to record.name, record %>
+          <%= link_to 'Destroy', record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %>
+        </p>
+      <% end %>
+    </div>
+    </div>
   <% end %>
-  </p>
-<% end %>
 </div>
 
-<% if @record %>
 <strong>Record</strong><br>
-  <%= @record.name %><br>
-  <%= @record.username %><br>
-  <%= @record.password %><br>
-  <%= @record.url %><br>
-  <%= @record.notes %>
-<% end %>
+<%= @current_record.username %><br>
+<%= @current_record.password %><br>
+<%= @current_record.url %><br>
+<%= @current_record.notes %>

@@ -4,7 +4,8 @@ class RecordsController < ApplicationController
   def show
     @folders = current_user.folders
     @folder = Folder.new
-    @record = Record.get_record_from(@folders, params[:id])
+    @record = Record.new
+    @current_record = Record.get_record_from(@folders, params[:id])
     flash.now[:alert] = "You are not allowed to access this resource." unless @record
   end
 

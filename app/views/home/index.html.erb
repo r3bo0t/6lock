@@ -11,14 +11,13 @@
 
 <div id="folders">
   <% @folders.each do |folder| %>
-    <p>
+    <div>
     <% if folder == @current_folder %>
       <em><%= folder.name %></em>
     <% else %>
       <%= folder.name %>
     <% end %>
-    <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br>
-    <p>
+    <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br><br>
     <strong>New record</strong>
     <%= form_for @record, :remote => true do |f| %>
       <%= hidden_field_tag 'folder_id', folder.id, :id => nil, :class => 'folder_id' %>
@@ -26,7 +25,6 @@
       <%= f.text_field :name, :id => nil, :class => 'record_name' %>
       <%= f.submit %>
     <% end %>
-    </p>
     <div id='<%= "folder_#{folder.id}" %>'>
       <% folder.records.each do |record| %>
         <p>
@@ -35,7 +33,7 @@
         </p>
       <% end %>
     </div>
-    </p>
+    </div>
   <% end %>
 </div>
 
