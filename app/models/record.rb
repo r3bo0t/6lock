@@ -1,3 +1,4 @@
+require 'digest/sha2'
 require 'aescrypt'
 
 class Record
@@ -26,9 +27,12 @@ class Record
 
   def set_decrypted_password
     unless self.password.blank?
-      iv = self.folder.user.created_at.to_i.to_s[0..7] * 2
+      sha256 = Digest::SHA2.new(256)
+      salt = sha256.digest(self.id.to_s)
+      key = OpenSSL::PKCS5.pbkdf2_hmac(KEY, salt, 100000, 16, OpenSSL::Digest::SHA256.new)
+      iv = salt[0..15]
       decoded = Base64.decode64(self.password.encode('ascii-8bit'))
-      self.decrypted_password = decrypt(decoded, KEY, iv, "AES-256-CBC")
+      self.decrypted_password = decrypt(decoded, key, iv, "AES-128-CBC")
     end
   end
 
@@ -53,8 +57,11 @@ class Record
   private
     def set_password
       if self.decrypted_password
-        iv = self.folder.user.created_at.to_i.to_s[0..7] * 2
-        encrypted_password = encrypt(self.decrypted_password, KEY, iv, "AES-256-CBC")
+        sha256 = Digest::SHA2.new(256)
+        salt = sha256.digest(self.id.to_s)
+        key = OpenSSL::PKCS5.pbkdf2_hmac(KEY, salt, 100000, 16, OpenSSL::Digest::SHA256.new)
+        iv = salt[0..15]
+        encrypted_password = encrypt(self.decrypted_password, key, iv, "AES-128-CBC")
         write_attribute :password, Base64.encode64(encrypted_password).encode('utf-8')
       end
     end
