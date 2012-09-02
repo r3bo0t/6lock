@@ -1,6 +1,10 @@
+require 'aescrypt'
+
 class Record
   include Mongoid::Document
   include Mongoid::Timestamps
+
+  include AESCrypt
 
   embedded_in :folder, inverse_of: :records
 
@@ -13,9 +17,20 @@ class Record
 
   validates_presence_of :name
 
-  attr_accessible :name, :username, :password, :url, :notes, :created_at, :updated_at
+  attr_accessible :name, :username, :password, :decrypted_password, :url, :notes, :created_at, :updated_at
+  attr_accessor :decrypted_password
+
+  after_validation :set_password
 
   default_scope order_by(:name => :asc)
+
+  def set_decrypted_password
+    unless self.password.blank?
+      iv = self.folder.user.created_at.to_i.to_s[0..7] * 2
+      decoded = Base64.decode64(self.password.encode('ascii-8bit'))
+      self.decrypted_password = decrypt(decoded, KEY, iv, "AES-256-CBC")
+    end
+  end
 
   class << self
     def often_used(folders)
@@ -34,4 +49,13 @@ class Record
       records.flatten
     end
   end
+
+  private
+    def set_password
+      if self.decrypted_password
+        iv = self.folder.user.created_at.to_i.to_s[0..7] * 2
+        encrypted_password = encrypt(self.decrypted_password, KEY, iv, "AES-256-CBC")
+        write_attribute :password, Base64.encode64(encrypted_password).encode('utf-8')
+      end
+    end
 end

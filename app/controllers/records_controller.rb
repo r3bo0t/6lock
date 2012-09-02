@@ -6,7 +6,13 @@ class RecordsController < ApplicationController
     @folder = Folder.new
     @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
-    flash.now[:alert] = "You are not allowed to access this resource." unless @record
+    if @current_record
+      @current_record.set_decrypted_password
+      @current_folder = @current_record.folder
+    else
+      flash[:alert] = "You are not allowed to access this resource."
+      redirect_to home_path
+    end
   end
 
   def create
@@ -26,9 +32,30 @@ class RecordsController < ApplicationController
   end
 
   def update
+    folder = Folder.where(:id => params[:folder_id], :user_id => current_user.id).first
+    if folder
+      record = folder.records.find(params[:id])
+      record.update_attributes(params[:record])
+
+      redirect_to record_path(record)
+    else
+      flash[:alert] = "You are not allowed to access this resource."
+      redirect_to home_path
+    end
   end
 
   def edit
+    @folders = current_user.folders
+    @folder = Folder.new
+    @record = Record.new
+    @current_record = Record.get_record_from(@folders, params[:id])
+    if @current_record
+      @current_record.set_decrypted_password
+      @current_folder = @current_record.folder
+    else
+      flash[:alert] = "You are not allowed to access this resource."
+      redirect_to home_path
+    end
   end
 
   def destroy

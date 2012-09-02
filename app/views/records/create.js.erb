@@ -1,5 +1,5 @@
 <% if @record.valid? %>
-  var content = '<p>&nbsp;&nbsp;<%= @record.name %> <%= link_to 'Destroy', @record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %></p>'
+  var content = '<p>&nbsp;&nbsp;<%= link_to @record.name, @record %> <%= link_to 'Destroy', @record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %></p>'
   $(function() {
     $('.record_name').val('')
     $('#folder_<%= @folder.id %>').prepend(content)
