@@ -1,18 +1,14 @@
 <% if @folder.valid? %>
-  var content = '<div><%= @folder.name %> <%= link_to 'Destroy', @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br><br>\
-                   <strong>New record</strong>\
-                   <%= form_for @record, :remote => true do |f| %>\
-                     <%= hidden_field_tag 'folder_id', @folder.id, :id => nil, :class => 'folder_id' %>\
-                     <%= f.label :name %>\
-                     <%= f.text_field :name, :id => nil, :class => 'record_name' %>\
-                     <%= f.submit %>\
-                   <% end %>\
-                   <div id="<%= "folder_#{@folder.id}" %>">\
-                   </div>\
-                 </div>'
+  var content = '<li class="folder_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>\
+                <a href="#"><%= @folder.name %></a></li>'
   $(function() {
     $('#folder_name').val('')
-    $('#folders').prepend(content)
+    $('#add_folder_form').after(content)
+    $('#folders_nav .folder_link').hover(function() {
+      $('a:first-child', this).css('display', 'inline-block')
+    }, function() {
+      $('a:first-child', this).css('display', 'none')
+    })
     $('.delete_folder').bind('ajax:success', function() {
       $(this).parent().remove()
     })

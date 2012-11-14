@@ -36,10 +36,17 @@
 <% if user_signed_in? %>
   <ul id="folders_nav">
     <li id="add_folder"><a href="#">+</a></li>
-  <% @folders.each do |folder| %>
-    <%= content_tag :li, :id => ("current_folder" if folder == @current_folder) do %>
-      <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>
-      <a href="#"><%= folder.name %></a>
+    <li id="add_folder_form">
+      <%= form_for @folder, :remote => true do |f| %>
+        <%= f.text_field :name, :size => '25' %> <%= f.submit 'OK' %>
+      <% end %>
+    </li>
+  <% if @folders %>
+    <% @folders.each do |folder| %>
+      <%= content_tag :li, :id => ("current_folder" if folder == @current_folder), :class => "folder_link" do %>
+        <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>
+        <a href="#"><%= folder.name %></a>
+      <% end %>
     <% end %>
   <% end %>
   </ul>

@@ -1,14 +1,5 @@
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
-<p>
-<strong>New folder</strong>
-<%= form_for @folder, :remote => true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
-</p>
-
 <div id="folders">
   <% @folders.each do |folder| %>
     <div>
@@ -40,7 +31,9 @@
 
 <p>
 <strong>Often used</strong><br>
-<% @often_used.each do |record| %>
-  <%= record.name %><br>
+<% if @often_used %>
+  <% @often_used.each do |record| %>
+    <%= record.name %><br>
+  <% end %>
 <% end %>
 </p>
