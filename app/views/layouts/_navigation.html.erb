@@ -1,53 +1,57 @@
-<ul id="main_nav">
-  <li class="separator"></li>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to 'Home', home_path, :id => ("current_page" if controller.controller_name == 'home') %>
-    </li>
+<div id="left_bar">
+  <ul id="main_nav">
     <li class="separator"></li>
-    <li>
-      <%= link_to 'Account', edit_user_registration_path, :id => ("current_page" if controller.controller_name == 'registrations') %>
-    </li>
-    <li class="separator"></li>
-    <li>
-      <span class="fake_link"<%= "id=current_page" if controller.controller_name == 'records' %>>Folders</span>
-    </li>
-
-    <div id="bottom">
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to 'Home', home_path, :id => ("current_page" if controller.controller_name == 'home') %>
+      </li>
       <li class="separator"></li>
       <li>
-        <%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
+        <%= link_to 'Account', edit_user_registration_path, :id => ("current_page" if controller.controller_name == 'registrations') %>
       </li>
-    </div>
-  <% else %>
-    <li>
-      <%= link_to "Sixlock", root_path %>
-    </li>
+      <li class="separator"></li>
+      <li>
+        <span class="fake_link"<%= "id=current_page" if controller.controller_name == 'records' %>>Folders</span>
+      </li>
+
+      <div id="bottom">
+        <li class="separator"></li>
+        <li>
+          <%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
+        </li>
+      </div>
+    <% else %>
+      <li>
+        <%= link_to "Sixlock", root_path %>
+      </li>
+      <li class="separator"></li>
+      <li>
+        <%= link_to 'Login', new_user_session_path %>
+      </li>
+      <li>
+        <%= link_to 'Sign up', new_user_registration_path %>
+      </li>
+    <% end %>
     <li class="separator"></li>
-    <li>
-      <%= link_to 'Login', new_user_session_path %>
-    </li>
-    <li>
-      <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
-  <% end %>
-  <li class="separator"></li>
-</ul>
-<% if user_signed_in? %>
-  <ul id="folders_nav">
-    <li id="add_folder"><a href="#">+</a></li>
-    <li id="add_folder_form">
-      <%= form_for @folder, :remote => true do |f| %>
-        <%= f.text_field :name, :size => '25' %> <%= f.submit 'OK' %>
-      <% end %>
-    </li>
-  <% if @folders %>
-    <% @folders.each do |folder| %>
-      <%= content_tag :li, :id => ("current_folder" if folder == @current_folder), :class => "folder_link" do %>
-        <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>
-        <a href="#"><%= folder.name %></a>
+  </ul>
+  <% if user_signed_in? %>
+    <ul id="folders_nav">
+      <li id="add_folder"><a href="#">+</a></li>
+      <li id="add_folder_form">
+        <%= form_for @folder, :remote => true do |f| %>
+          <%= f.text_field :name, :size => '25' %> <%= f.submit 'OK' %>
+        <% end %>
+      </li>
+    <% if @folders %>
+      <% @folders.each do |folder| %>
+        <%= content_tag :li, :id => ("current_folder" if folder == @current_folder), :class => "folder_link" do %>
+          <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>
+          <a href="#"><%= folder.name %></a>
+        <% end %>
       <% end %>
     <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
+</div>
+<div id="right_bar">
+</div>

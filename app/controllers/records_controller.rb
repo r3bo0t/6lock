@@ -3,7 +3,6 @@ class RecordsController < ApplicationController
 
   def show
     @folders = current_user.folders
-    @folder = Folder.new
     @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
@@ -46,7 +45,6 @@ class RecordsController < ApplicationController
 
   def edit
     @folders = current_user.folders
-    @folder = Folder.new
     @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
