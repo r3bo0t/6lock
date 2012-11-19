@@ -35,7 +35,7 @@
     <li class="separator"></li>
   </ul>
   <% if user_signed_in? %>
-    <ul id="folders_nav">
+    <ul id="folders_nav" class="elements_nav">
       <li id="add_folder"><a href="#">+</a></li>
       <li id="add_folder_form">
         <%= form_for @folder, :remote => true do |f| %>
@@ -44,9 +44,9 @@
       </li>
     <% if @folders %>
       <% @folders.each do |folder| %>
-        <%= content_tag :li, :id => ("current_folder" if folder == @current_folder), :class => "folder_link" do %>
+        <%= content_tag :li, :id => ("current_folder" if folder == @current_folder), :class => "folder_link, element_link" do %>
           <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>
-          <a href="#"><%= folder.name %></a>
+          <a href="#" id="link_<%= folder.id %>" class="show_folder"><%= folder.name %></a>
         <% end %>
       <% end %>
     <% end %>
@@ -55,3 +55,18 @@
 </div>
 <div id="right_bar">
 </div>
+<% if @folders %>
+  <% @folders.each do |folder| %>
+    <div id="folder_<%= folder.id %>" class="files_bar">
+      <ul class="files_nav elements_nav">
+        <li id="add_folder"><a href="#">+</a></li>
+        <% folder.records.each do |record| %>
+          <li class="element_link">
+            <%= link_to image_tag('cross.png', :alt => 'delete'), record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %>
+            <%= link_to record.name, record %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

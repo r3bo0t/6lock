@@ -4,7 +4,7 @@
 
 $ ->
   # Shows and hides the cross
-  $('#folders_nav .folder_link').hover(
+  $('.elements_nav .element_link').hover(
     -> $('a:first-child', this).css('display', 'inline-block')
     -> $('a:first-child', this).css('display', 'none')
   )
@@ -16,6 +16,10 @@ $ ->
       else
         $('#add_folder_form').slideDown('fast')
   )
-  $('.folder_link a').click(
-    -> #
+  $('.show_folder').click(
+    ->
+      $('#current_folder').attr('id', '') if $('#current_folder') != undefined
+      $(this).parent().attr('id', 'current_folder')
+      $('.files_bar').css('z-index', '1')
+      $('#folder_' + $(this).attr('id').split('_')[1]).css('z-index', '4')
   )

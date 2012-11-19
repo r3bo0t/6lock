@@ -2,13 +2,6 @@ header {
   height: 100%;
   float: left;
   width: 502px;
-}
-
-#left_bar {
-  @include single-box-shadow(#ccc, 4px, 0px, 6px, 2px, false);
-  @include navbar;
-  border-right: 1px solid #fff;
-  z-index: 2;
   a, .fake_link {
     font-size: 1.125em;
     display: inline-block;
@@ -19,9 +12,23 @@ header {
   }
 }
 
+#left_bar {
+  @include single-box-shadow(#ccc, 4px, 0px, 6px, 2px, false);
+  @include navbar;
+  border-right: 1px solid #fff;
+  z-index: 3;
+}
+
 #right_bar {
   @include navbar;
   border-right: 1px solid #a8a8a8;
+  z-index: 2;
+}
+
+.files_bar {
+  position: absolute;
+  left: 251px;
+  width: 250px;
   z-index: 1;
 }
 
@@ -57,6 +64,31 @@ header {
     }
   }
   .delete_folder {
+    position: absolute;
+    width: 7px;
+    top: 0;
+    left: -3px;
+    display: none;
+  }
+}
+
+.files_nav {
+  list-style-type: none;
+  li {
+    position: relative;
+    margin-top: 10px;
+    padding: 0 12px;
+  }
+  a {
+    width: 80%;
+    line-height: 25px;
+    padding-left: 25px;
+    font: {
+      size: 0.75em;
+      weight: 400;
+    }
+  }
+  .delete_record {
     position: absolute;
     width: 7px;
     top: 0;

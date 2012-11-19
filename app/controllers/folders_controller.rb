@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :prepare_folders_and_records
 
   def create
     @folder = current_user.folders.build(params[:folder])

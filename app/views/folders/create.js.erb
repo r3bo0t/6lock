@@ -3,6 +3,7 @@
                 <a href="#"><%= @folder.name %></a></li>'
   $(function() {
     $('#folder_name').val('')
+    $('#add_folder_form').slideUp('fast')
     $('#add_folder_form').after(content)
     $('#folders_nav .folder_link').hover(function() {
       $('a:first-child', this).css('display', 'inline-block')
