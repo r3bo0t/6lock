@@ -1,34 +1,5 @@
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
-<div id="folders">
-  <% @folders.each do |folder| %>
-    <div>
-    <% if folder == @current_folder %>
-      <em><%= folder.name %></em>
-    <% else %>
-      <%= folder.name %>
-    <% end %>
-    <%= link_to 'Destroy', folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %><br><br>
-    <strong>New record</strong>
-    <%= form_for @record, :remote => true do |f| %>
-      <%= hidden_field_tag 'folder_id', folder.id, :id => nil, :class => 'folder_id' %>
-      <%= f.label :name %>
-      <%= f.text_field :name, :id => nil, :class => 'record_name' %>
-      <%= f.submit %>
-    <% end %>
-    <div id='<%= "folder_#{folder.id}" %>'>
-      <% folder.records.each do |record| %>
-        <p>
-          &nbsp;&nbsp;<%= link_to record.name, record %>
-          <%= link_to 'Destroy', record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %>
-        </p>
-      <% end %>
-    </div>
-    </div>
-  <% end %>
-</div>
-
-
 <p>
 <strong>Often used</strong><br>
 <% if @often_used %>

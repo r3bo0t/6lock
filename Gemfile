@@ -19,7 +19,7 @@ group :development do
   gem "factory_girl_rails", ">= 3.5.0"
 end
 
-group:test do
+group :test do
   gem "rspec-rails", ">= 2.11.0"
   gem "database_cleaner", ">= 0.8.0"
   gem "mongoid-rspec", "1.4.6"

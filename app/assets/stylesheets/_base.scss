@@ -10,3 +10,10 @@ $interstate_blue: #4c6b80;
   min-height: 100%;
   position: relative;
 }
+
+@mixin current_item($color) {
+  @include background(linear-gradient(top, $color, darken($color, 10%)));
+  a {
+    color: #fff;
+  }
+}

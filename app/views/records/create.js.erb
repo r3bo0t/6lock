@@ -1,12 +1,21 @@
 <% if @record.valid? %>
-  var content = '<p>&nbsp;&nbsp;<%= link_to @record.name, @record %> <%= link_to 'Destroy', @record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_record' %></p>'
+  var content = '<li class="element_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>\
+                <%= link_to @record.name, @record %></li>'
   $(function() {
-    $('.record_name').val('')
-    $('#folder_<%= @folder.id %>').prepend(content)
-    $('.delete_record').bind('ajax:success', function() {
+    $('#folder_<%= @folder.id %> .record_name').val('')
+    form = $('#folder_<%= @folder.id %> .add_file_form')
+    form.slideUp('fast')
+    form.after(content)
+    $('.elements_nav .element_link').hover(function() {
+      $('a:first-child', this).css('display', 'inline-block')
+    }, function() {
+      $('a:first-child', this).css('display', 'none')
+    })
+    $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
     })
   })
 <% else %>
   alert("Invalid name")
 <% end %>
+

@@ -1,16 +1,16 @@
 <% if @folder.valid? %>
-  var content = '<li class="folder_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_folder' %>\
+  var content = '<li class="element_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>\
                 <a href="#"><%= @folder.name %></a></li>'
   $(function() {
     $('#folder_name').val('')
     $('#add_folder_form').slideUp('fast')
     $('#add_folder_form').after(content)
-    $('#folders_nav .folder_link').hover(function() {
+    $('.elements_nav .element_link').hover(function() {
       $('a:first-child', this).css('display', 'inline-block')
     }, function() {
       $('a:first-child', this).css('display', 'none')
     })
-    $('.delete_folder').bind('ajax:success', function() {
+    $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
     })
   })

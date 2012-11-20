@@ -47,7 +47,7 @@ header {
   }
 }
 
-#folders_nav {
+.elements_nav {
   list-style-type: none;
   li {
     position: relative;
@@ -63,7 +63,7 @@ header {
       weight: 400;
     }
   }
-  .delete_folder {
+  .delete_element {
     position: absolute;
     width: 7px;
     top: 0;
@@ -72,32 +72,7 @@ header {
   }
 }
 
-.files_nav {
-  list-style-type: none;
-  li {
-    position: relative;
-    margin-top: 10px;
-    padding: 0 12px;
-  }
-  a {
-    width: 80%;
-    line-height: 25px;
-    padding-left: 25px;
-    font: {
-      size: 0.75em;
-      weight: 400;
-    }
-  }
-  .delete_record {
-    position: absolute;
-    width: 7px;
-    top: 0;
-    left: -3px;
-    display: none;
-  }
-}
-
-#add_folder {
+.add_element {
   @include background(linear-gradient(top, #f3f2f2, darken(#f3f2f2, 25%)));
   a {
     @include single-text-shadow(1px, 1px, 1px, false, #fff);
@@ -106,15 +81,16 @@ header {
   }
 }
 
-#add_folder_form {
+.add_element_form {
   display: none;
 }
 
 #current_folder {
-  @include background(linear-gradient(top, $interstate_blue, darken($interstate_blue, 10%)));
-  a {
-    color: #fff;
-  }
+  @include current_item($interstate_blue);
+}
+
+#current_record {
+  @include current_item(#b2b2b2);
 }
 
 #current_page {

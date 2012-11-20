@@ -16,6 +16,15 @@ $ ->
       else
         $('#add_folder_form').slideDown('fast')
   )
+  # Slides the file creation form up and down
+  $('.add_file a').click(
+    ->
+      if $(this).parent().next().css('display') == 'list-item'
+        $(this).parent().next().slideUp('fast')
+      else
+        $(this).parent().next().slideDown('fast')
+  )
+  # Shows the selected files bar
   $('.show_folder').click(
     ->
       $('#current_folder').attr('id', '') if $('#current_folder') != undefined
