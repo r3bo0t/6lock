@@ -9,6 +9,7 @@ class RecordsController < ApplicationController
     if @current_record
       @current_record.set_decrypted_password
       @current_folder = @current_record.folder
+      @current_record.update_attribute('access_count', @current_record.access_count + 1)
     else
       flash[:alert] = "You are not allowed to access this resource."
       redirect_to home_path

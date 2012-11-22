@@ -39,7 +39,8 @@ class Record
   class << self
     def often_used(folders)
       records = extract_records_from(folders).sort_by(&:access_count).reverse
-      records[0..2] if records.length > 3
+      return records[0..2] if records.length > 3
+      records
     end
 
     def get_record_from(folders, record_id)

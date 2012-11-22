@@ -1,10 +1,11 @@
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
-<p>
-<strong>Often used</strong><br>
+<p id="often_used">Often used</p>
+
 <% if @often_used %>
   <% @often_used.each do |record| %>
-    <%= record.name %><br>
+    <div style="border:2px solid #4d4d4d;margin-top:20px;margin-right:50px;">
+      <%= record.name %>
+    </div>
   <% end %>
 <% end %>
-</p>
