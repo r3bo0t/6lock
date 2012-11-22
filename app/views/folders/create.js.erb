@@ -1,10 +1,23 @@
 <% if @folder.valid? %>
   var content = '<li class="element_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>\
-                <a href="#"><%= @folder.name %></a></li>'
+                <a href="#" id="link_<%= @folder.id %>" class="show_folder"><%= @folder.name %></a></li>'
+  var bar = '<div id="folder_<%= @folder.id %>" class="files_bar">\
+              <ul class="files_nav elements_nav">\
+                <li class="add_element add_file"><a href="#">+</a></li>\
+                <li class="add_element_form add_file_form">\
+                  <%= form_for @record, :remote => true do |f| %>\
+                    <%= hidden_field_tag 'folder_id', @folder.id, :id => nil, :class => 'folder_id' %>\
+                    <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %> <%= f.submit 'OK' %>\
+                  <% end %>\
+                </li>\
+              </ul>\
+            </div>'
   $(function() {
     $('#folder_name').val('')
     $('#add_folder_form').slideUp('fast')
+    $('#right_bar').after(bar)
     $('#add_folder_form').after(content)
+    //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
       $('a:first-child', this).css('display', 'inline-block')
     }, function() {
@@ -12,6 +25,21 @@
     })
     $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
+    })
+    //---------------- Slides the file creation form up and down
+    $('.add_file a').click(function() {
+      if ($(this).parent().next().css('display') == 'list-item')
+        $(this).parent().next().slideUp('fast')
+      else
+        $(this).parent().next().slideDown('fast')
+    })
+    //---------------- Shows the selected files bar
+    $('.show_folder').click(function() {
+      if ($('#current_folder') != undefined)
+        $('#current_folder').attr('id', '')
+      $(this).parent().attr('id', 'current_folder')
+      $('.files_bar').css('z-index', '1')
+      $('#folder_' + $(this).attr('id').split('_')[1]).css('z-index', '4')
     })
   })
 <% else %>

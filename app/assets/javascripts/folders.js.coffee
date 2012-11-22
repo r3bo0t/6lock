@@ -3,7 +3,34 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('.delete_folder').bind 'ajax:success', ->
+  $('.delete_element').bind 'ajax:success', ->
     $(this).parent().remove()
-  $('.delete_record').bind 'ajax:success', ->
-    $(this).parent().remove()
+  # Shows and hides the cross
+  $('.elements_nav .element_link').hover(
+    -> $('a:first-child', this).css('display', 'inline-block')
+    -> $('a:first-child', this).css('display', 'none')
+  )
+  # Slides the folder creation form up and down
+  $('#add_folder a').click(
+    ->
+      if $('#add_folder_form').css('display') == 'list-item'
+        $('#add_folder_form').slideUp('fast')
+      else
+        $('#add_folder_form').slideDown('fast')
+  )
+  # Slides the file creation form up and down
+  $('.add_file a').click(
+    ->
+      if $(this).parent().next().css('display') == 'list-item'
+        $(this).parent().next().slideUp('fast')
+      else
+        $(this).parent().next().slideDown('fast')
+  )
+  # Shows the selected files bar
+  $('.show_folder').click(
+    ->
+      $('#current_folder').attr('id', '') if $('#current_folder') != undefined
+      $(this).parent().attr('id', 'current_folder')
+      $('.files_bar').css('z-index', '1')
+      $('#folder_' + $(this).attr('id').split('_')[1]).css('z-index', '4')
+  )
