@@ -4,8 +4,26 @@
 
 <% if @often_used %>
   <% @often_used.each do |record| %>
-    <div style="border:2px solid #4d4d4d;margin-top:20px;margin-right:50px;">
-      <%= record.name %>
+    <div class="often_used">
+      <div class="name">
+        <p>
+          <%= record.name %>
+        </p>
+      </div>
+      <div class="data">
+        <p>
+          <span class="row">
+            <span class="cell"><%= record.username %></span>
+          </span>
+          <span class="row">
+            <span class="cell"><%= record.decrypted_password %></span>
+          </span>
+          <span class="row">
+            <span class="cell"><%= link_to record.url, record.url, :target => '_blank' %></span>
+          </span>
+        </p>
+      </div>
+      <%= link_to '<div class="link"></div>'.html_safe, record %>
     </div>
   <% end %>
 <% end %>

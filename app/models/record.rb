@@ -39,8 +39,8 @@ class Record
   class << self
     def often_used(folders)
       records = extract_records_from(folders).sort_by(&:access_count).reverse
-      return records[0..2] if records.length > 3
-      records
+      return records[0..2].each(&:set_decrypted_password) if records.length > 3
+      records.each(&:set_decrypted_password)
     end
 
     def get_record_from(folders, record_id)

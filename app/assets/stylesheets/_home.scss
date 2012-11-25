@@ -4,7 +4,52 @@
 
 #often_used {
   text-align: right;
-  color: #4d4d4d;
+  color: $dark_text;
   font-size: 1.3em;
   padding-right: 50px;
+}
+
+.often_used {
+  @include border-radius(4px);
+  height: 120px;
+  margin: 20px 50px 0 0;
+  overflow: hidden;
+  background: #f3f3f3;
+  color: $dark_text;
+  .name {
+    float: left;
+    width: 160px;
+    height: 100%;
+    background: #d9d9d9;
+    border-left: 4px solid $electric_blue;
+    p {
+      text-align: center;
+      line-height: 120px;
+    }
+  }
+  .data {
+    float: left;
+    height: 100%;
+    p {
+      display: table;
+      height: 100%;
+      padding: 10px 0 10px 25px;
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
+  .link {
+    float: right;
+    width: 70px;
+    height: 100%;
+    background: url(arrow.png) no-repeat center center #4c4c4c;
+  }
+  .row {
+    display: table-row;
+  }
+  .cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
