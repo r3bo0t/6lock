@@ -3,7 +3,7 @@ Sixlock::Application.routes.draw do
 
   root :to => 'sixlock#home'
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
 
   resources :records, :except => [:index, :new]
   resources :folders, :except => [:show, :new, :index]

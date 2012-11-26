@@ -7,7 +7,7 @@ class RecordsController < ApplicationController
     @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
-      @current_record.set_decrypted_password
+      @current_record.set_decrypted_password(session[:master])
       @current_folder = @current_record.folder
       @current_record.update_attribute('access_count', @current_record.access_count + 1)
     else
@@ -20,6 +20,7 @@ class RecordsController < ApplicationController
     @folder = Folder.where(:id => params[:folder_id], :user_id => current_user.id).first
     if @folder
       @record = @folder.records.build(params[:record])
+      @record.set_password(session[:master])
       @record.save
 
       respond_to do |format|
@@ -37,6 +38,8 @@ class RecordsController < ApplicationController
     if folder
       record = folder.records.find(params[:id])
       record.update_attributes(params[:record])
+      record.set_password(session[:master])
+      record.save
 
       redirect_to record_path(record)
     else
@@ -50,7 +53,7 @@ class RecordsController < ApplicationController
     @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
-      @current_record.set_decrypted_password
+      @current_record.set_decrypted_password(session[:master])
       @current_folder = @current_record.folder
     else
       flash[:alert] = "You are not allowed to access this resource."

@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_filter :prepare_folders_and_records
 
   def index
-    @often_used = Record.often_used(@folders)
+    @often_used = Record.often_used(@folders, session[:master])
     @current_folder = @folders.first
   end
 end
