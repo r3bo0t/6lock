@@ -40,7 +40,7 @@ header {
     padding: 9px 0;
     height: 32px;
     &.separator {
-     @include background(linear-gradient(top, #b3b3b3 50%, #fff 50%));
+      @include background(linear-gradient(top, #b3b3b3 50%, #fff 50%));
       padding: 0;
       height: 2px;
     }
@@ -96,6 +96,7 @@ header {
 #current_page {
   @include border-radius(4px, 4px);
   @include background(linear-gradient(top, $electric_blue, darken($electric_blue, 15%)));
+  background: -ms-linear-gradient(top, #2186ED, #0F60B3);
   color: #fff;
   border: 1px solid #155494;
 }

@@ -15,6 +15,7 @@
 
 @import "header";
 @import "home";
+@import "records";
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -23,9 +24,15 @@
   padding: 0;
   color: #4c4c4c;
 }
+
 html, body {
   height: 100%;
 }
+
+img {
+  border: none;
+}
+
 h1 {
   font: {
     size: 3em;
@@ -33,27 +40,34 @@ h1 {
   }
   color: #b2b2b2;
 }
+
 a {
   text-decoration: none;
 }
+
 strong {
   font-weight: 400;
 }
+
 #flash_notice, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
 }
+
 #flash_notice {
   background-color: #CFC;
   border: solid 1px #6C6;
 }
+
 #flash_alert {
   background-color: #FCC;
   border: solid 1px #C66;
 }
+
 #container {
   height: 100%;
 }
+
 #main {
   margin-left: 502px;
   padding: 25px 0 0 40px;

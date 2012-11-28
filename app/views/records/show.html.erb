@@ -1,9 +1,32 @@
-<h1><%= @current_record.name %></h1>
+<h1><%= @current_record.name.capitalize %></h1>
 
-<%= link_to 'Edit', edit_record_path(@current_record) %><br>
-<%= @current_record.username %><br>
-<%= @current_record.decrypted_password %><br>
-<%= @current_record.url %><br>
-<%= @current_record.notes %>
+<div class="record_info">
+  <div class="info_title">
+    <p>User</p>
+  </div>
+  <div class="info_content">
+    <p><%= @current_record.username %></p>
+  </div>
+</div>
 
-<%#= @current_record.inspect %>
+<div class="record_info">
+  <div class="info_title">
+    <p>Password</p>
+  </div>
+  <div class="info_content">
+    <p><%= @current_record.decrypted_password %></p>
+  </div>
+</div>
+
+<div class="record_info">
+  <div class="info_title">
+    <p>Url</p>
+  </div>
+  <div class="info_content">
+    <p><%= link_to @current_record.url, @current_record.url, :target => '_blank' %></p>
+  </div>
+</div>
+
+<p><%= @current_record.notes %></p>
+
+<%= link_to 'Edit', edit_record_path(@current_record) %>
