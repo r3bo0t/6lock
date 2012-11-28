@@ -13,8 +13,13 @@ $dark_text: #4d4d4d;
 }
 
 @mixin current_item($color) {
-  @include background(linear-gradient(top, $color, darken($color, 10%)));
+  @include background_gradient($color, darken($color, 10%));
   a {
     color: #fff;
   }
+}
+
+@mixin background_gradient($start_color, $end_color) {
+  @include background(linear-gradient(top, $start_color, $end_color));
+  background: -ms-linear-gradient(top, $start_color, $end_color);
 }
