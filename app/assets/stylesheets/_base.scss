@@ -13,13 +13,14 @@ $dark_text: #4d4d4d;
 }
 
 @mixin current_item($color) {
-  @include background_gradient($color, darken($color, 10%));
+  @include background_gradient(top, $color, darken($color, 10%));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color)}', endColorstr='#{ie-hex-str(darken($color, 10%))}', GradientType=0);
   a {
     color: #fff;
   }
 }
 
-@mixin background_gradient($start_color, $end_color) {
-  @include background(linear-gradient(top, $start_color, $end_color));
-  background: -ms-linear-gradient(top, $start_color, $end_color);
+@mixin background_gradient($start_side, $start_color, $end_color) {
+  @include background(linear-gradient($start_side, $start_color, $end_color));
+  background: -ms-linear-gradient($start_side, $start_color, $end_color);
 }

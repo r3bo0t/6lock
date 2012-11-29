@@ -10,13 +10,6 @@
     <%= stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Open+Sans:400,300", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <!--[if lte IE 6]>
-    <style type="text/css">
-    #left_bar, #right_bar {
-      height: 100%;
-    }
-    </style>
-    <![endif]-->
   </head>
   <body>
     <div id="container" class="container">
@@ -26,7 +19,7 @@
       <div id="main" role="main">
         <%= render 'layouts/messages' %>
         <%= yield %>
-        <footer>
+        <footer style="position:absolute;bottom:0;">
           <%= debug(params) if Rails.env == 'development' %>
           <%= session.inspect %>
         </footer>

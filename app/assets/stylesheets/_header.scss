@@ -40,7 +40,8 @@ header {
     padding: 9px 0;
     height: 32px;
     &.separator {
-      @include background_gradient(#b3b3b3 50%, #fff 50%);
+      @include background_gradient(top, #b3b3b3 50%, #fff 50%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(#b3b3b3)}', endColorstr='#{ie-hex-str(#fff)}', GradientType=0);
       padding: 0;
       height: 2px;
     }
@@ -73,7 +74,8 @@ header {
 }
 
 .add_element {
-  @include background_gradient(#f3f2f2, darken(#f3f2f2, 25%));
+  @include background_gradient(top, #f3f2f2, darken(#f3f2f2, 25%));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(#f3f2f2)}', endColorstr='#{ie-hex-str(darken(#f3f2f2, 25%))}', GradientType=0);
   a {
     @include single-text-shadow(1px, 1px, 1px, false, #fff);
     font-weight: bold;
@@ -95,7 +97,8 @@ header {
 
 #current_page {
   @include border-radius(4px, 4px);
-  @include background_gradient($electric_blue, darken($electric_blue, 15%));
+  @include background_gradient(top, $electric_blue, darken($electric_blue, 15%));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($electric_blue)}', endColorstr='#{ie-hex-str(darken($electric_blue, 15%))}', GradientType=0);
   color: #fff;
   border: 1px solid #155494;
 }
