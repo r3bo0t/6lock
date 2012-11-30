@@ -1,14 +1,38 @@
-<h1><%= @current_record.name %></h1>
+<h1><%= @current_record.name.capitalize %></h1>
 
 <%= form_for @current_record do |f| %>
   <%= hidden_field_tag 'folder_id', @current_folder.id, :id => nil, :class => 'folder_id' %>
-  <%= f.label :username %>
-  <%= f.text_field :username %><br>
-  <%= f.label :decrypted_password %>
-  <%= f.password_field :decrypted_password, :value => @current_record.decrypted_password %><br>
-  <%= f.label :url %>
-  <%= f.text_field :url %><br>
-  <%= f.label :notes %>
-  <%= f.text_area :notes %><br>
-  <%= f.submit 'Done' %>
+
+  <%= f.submit 'Done', :id => "edit_record" %>
+
+  <div class="clear_right"></div>
+
+  <div class="record_info">
+    <div class="info_title">
+      <p>User</p>
+    </div>
+    <div class="info_content">
+      <p><%= f.text_field :username %></p>
+    </div>
+  </div>
+
+  <div class="record_info">
+    <div class="info_title">
+      <p>Password</p>
+    </div>
+    <div class="info_content">
+      <p><%= f.password_field :decrypted_password, :value => @current_record.decrypted_password %></p>
+    </div>
+  </div>
+
+  <div class="record_info">
+    <div class="info_title">
+      <p>Url</p>
+    </div>
+    <div class="info_content">
+      <p><%= f.text_field :url %></p>
+    </div>
+  </div>
+
+  <p id="notes"><%= f.text_area :notes, :cols => "50", :rows => "4" %></p>
 <% end %>

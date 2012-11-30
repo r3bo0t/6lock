@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   private
     def prepare_folders_and_records
       @folders = current_user.folders
+      @current_folder = @folders.first
       @folder = Folder.new
       @record = Record.new
     end

@@ -1,3 +1,15 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.account_info {
+  @extend .record_info;
+}
+
+#edit_account {
+  @extend #edit_record;
+}
+
+input#edit_account {
+  @extend input#edit_record;
+}

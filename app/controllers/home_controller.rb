@@ -4,6 +4,5 @@ class HomeController < ApplicationController
 
   def index
     @often_used = Record.often_used(@folders, session[:master])
-    @current_folder = @folders.first
   end
 end
