@@ -77,11 +77,17 @@
 input#edit_record {
   @include background_gradient(left, $green_triad, lighten($green_triad, 10%));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($green_triad)}', endColorstr='#{ie-hex-str(lighten($green_triad, 10%))}', GradientType=1);
-  border: 1px solid #90a00e;
+  border: 1px solid darken($green_triad, 10%);
+  border-right: none;
   color: #fff;
   cursor: pointer;
   font: {
     size: 0.9em;
     weight: 400;
   }
+}
+
+#info_password {
+  border: none;
+  background: none;
 }

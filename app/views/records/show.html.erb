@@ -18,7 +18,7 @@
     <p>Password</p>
   </div>
   <div class="info_content">
-    <p><%= @current_record.decrypted_password %></p>
+    <p><input id="info_password" type="password" readonly="readonly" value="<%= @current_record.decrypted_password %>"></p>
   </div>
 </div>
 

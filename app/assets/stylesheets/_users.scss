@@ -10,6 +10,19 @@
   @extend #edit_record;
 }
 
+#delete_account {
+  @extend #edit_record;
+  @include background_gradient(left, $red_triad, lighten($red_triad, 10%));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($red_triad)}', endColorstr='#{ie-hex-str(lighten($red_triad, 10%))}', GradientType=1);
+  border: 1px solid darken($red_triad, 10%);
+  border-right: none;
+  margin-top: 20px;
+}
+
 input#edit_account {
   @extend input#edit_record;
+}
+
+input.field_with_errors {
+  border: 2px solid $red_triad;
 }
