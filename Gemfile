@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.7'
+gem 'rails', '3.2.8'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -19,6 +19,7 @@ group :development do
   gem 'factory_girl_rails', '~> 3.5.0'
   gem 'genghisapp', '~> 2.1.6'
   gem 'bson_ext', '~> 1.7.1'
+  gem 'brakeman', '~> 1.8.3'
 end
 
 group :test do
