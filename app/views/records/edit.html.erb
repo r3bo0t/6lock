@@ -22,7 +22,24 @@
     </div>
     <div class="info_content">
       <p>
-        <%= f.password_field :decrypted_password, :value => @current_record.decrypted_password %>
+        <%= f.password_field :decrypted_password, :value => @current_record.decrypted_password, :class => "decrypted_password" %>
+        <input class="decrypted_password" id="password_value" type="text" size="30" value="<%= @current_record.decrypted_password %>">
+        <input id="toggle" type="button">
+        <input id="forge" type="button">
+        <div id="overlay"></div>
+        <div id="overlay_box">
+          <div id="inner_box">
+            <div id="box_header">
+              <p>Forge a password</p>
+            </div>
+            <div id="box_footer">
+              <p>
+                <input id="cancel_forge" type="button" value="Cancel">
+                <input id="forge_button" type="button" value="Forge it!">
+              </p>
+            </div>
+          </div>
+        </div>
       </p>
     </div>
   </div>
