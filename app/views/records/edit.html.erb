@@ -21,7 +21,9 @@
       <p>Password</p>
     </div>
     <div class="info_content">
-      <p><%= f.password_field :decrypted_password, :value => @current_record.decrypted_password %></p>
+      <p>
+        <%= f.password_field :decrypted_password, :value => @current_record.decrypted_password %>
+      </p>
     </div>
   </div>
 

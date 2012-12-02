@@ -87,7 +87,29 @@ input#edit_record {
   }
 }
 
-#info_password {
+input.info_password {
   border: none;
   background: none;
+}
+
+#password_value {
+  display: none;
+}
+
+#toggle {
+  @include single-box-shadow(#aaa, 0px, 0px, 6px, 1px);
+  width: 27px;
+  height: 24px;
+  background: url(toggle.jpg);
+  margin-bottom: 3px;
+  vertical-align: middle;
+  &:active {
+    @include single-box-shadow(#bbb, 0px, 0px, 2px, 1px);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%), url(toggle.jpg);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.25)), color-stop(100%,rgba(0,0,0,0))), url(toggle.jpg);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 100%), url(toggle.jpg);
+    background: -o-linear-gradient(top, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 100%), url(toggle.jpg);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 100%), url(toggle.jpg);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 100%), url(toggle.jpg);
+  }
 }
