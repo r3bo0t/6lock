@@ -176,14 +176,7 @@ input.info_password {
   padding: 4px 0;
   width: 100%;
   input {
-    @include border-radius(4px);
-    padding: 4px 8px;
-    margin-bottom: 3px;
-    vertical-align: middle;
-    font-weight: 400;
-    width: 70px;
-    border: 1px solid $dark_text;
-    cursor: pointer;
+    @include basic_button;
   }
   p {
     text-align: right;
@@ -200,5 +193,18 @@ input.info_password {
   @include background_gradient(top, $electric_blue, darken($electric_blue, 15%));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($electric_blue)}', endColorstr='#{ie-hex-str(darken($electric_blue, 15%))}', GradientType=0);
   margin-right: 12px;
+  color: #fff;
+}
+
+#tools {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em;
+}
+
+#generate {
+  @include background_gradient(top, $green_triad, darken($green_triad, 10%));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($green_triad)}', endColorstr='#{ie-hex-str(darken($green_triad, 10%))}', GradientType=0);
+  @include basic_button;
   color: #fff;
 }

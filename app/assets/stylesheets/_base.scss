@@ -26,3 +26,14 @@ $dark_text: #4d4d4d;
   @include background(linear-gradient($start_side, $start_color, $end_color));
   background: -ms-linear-gradient($start_side, $start_color, $end_color);
 }
+
+@mixin basic_button {
+  @include border-radius(4px);
+  padding: 4px 8px;
+  margin-bottom: 3px;
+  vertical-align: middle;
+  font-weight: 400;
+  width: 70px;
+  border: 1px solid $dark_text;
+  cursor: pointer;
+}
