@@ -4,15 +4,14 @@
 
 $ ->
   # Shows or hides password
-  $('#toggle').click(
+  $('.toggle').click(
     ->
-      $('.info_password').toggle() if ($('.info_password') != undefined)
-      $('.decrypted_password').toggle() if ($('.decrypted_password') != undefined)
+      $(this).prevAll('.info_password').toggle() if ($('.info_password') != undefined)
+      $(this).prevAll('.decrypted_password').toggle() if ($('.decrypted_password') != undefined)
   )
   # Fills both password fields
   $('.decrypted_password').keyup(
-    ->
-      $('.decrypted_password').val($(this).val())
+    -> $('.decrypted_password').val($(this).val())
   )
   # Forge button
   $('#forge').click(
@@ -60,7 +59,7 @@ $ ->
   $('#forge_button').click(
     ->
       $('#password_value').val($('#generated').val())
-      $('#record_decrypted_password').val($('#generated').val())
+      $('.decrypted_password').val($('#generated').val())
       $('#overlay').hide()
       $('#overlay_box').hide()
   )

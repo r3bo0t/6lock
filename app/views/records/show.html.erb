@@ -18,11 +18,13 @@
     <p>Password</p>
   </div>
   <div class="info_content">
-    <p>
-      <input class="info_password" type="password" readonly="readonly" size="<%= @current_record.decrypted_password.size %>" value="<%= @current_record.decrypted_password %>">
-      <input class="info_password" id="password_value" type="text" readonly="readonly" size="<%= @current_record.decrypted_password.size %>" value="<%= @current_record.decrypted_password %>">
-      <input id="toggle" type="button">
-    </p>
+    <% if @current_record.decrypted_password %>
+      <p>
+        <input class="info_password" type="password" readonly="readonly" size="<%= @current_record.decrypted_password.size %>" value="<%= @current_record.decrypted_password %>">
+        <input class="info_password password_value" type="text" readonly="readonly" size="<%= @current_record.decrypted_password.size %>" value="<%= @current_record.decrypted_password %>">
+        <input class="toggle" type="button">
+      </p>
+    <% end %>
   </div>
 </div>
 

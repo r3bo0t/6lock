@@ -16,7 +16,13 @@
             <span class="cell"><%= record.username %></span>
           </span>
           <span class="row">
-            <span class="cell"><%= record.decrypted_password %></span>
+            <span class="cell">
+              <% if record.decrypted_password %>
+                <input class="info_password" type="password" readonly="readonly" size="<%= record.decrypted_password.size %>" value="<%= record.decrypted_password %>">
+                <input class="info_password password_value" type="text" readonly="readonly" size="<%= record.decrypted_password.size %>" value="<%= record.decrypted_password %>">
+                <input class="toggle" type="button">
+              <% end %>
+            </span>
           </span>
           <span class="row">
             <span class="cell"><%= link_to record.url, record.url, :target => '_blank' %></span>
