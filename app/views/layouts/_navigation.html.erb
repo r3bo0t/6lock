@@ -39,7 +39,7 @@
       <li id="add_folder" class="add_element"><a href="#">+</a></li>
       <li id="add_folder_form" class="add_element_form">
         <%= form_for @folder, :remote => true do |f| %>
-          <%= f.text_field :name, :size => '25' %> <%= f.submit 'OK' %>
+          <%= f.text_field :name, :size => '25' %><%= f.submit 'OK', :class => "new_element_submit" %>
         <% end %>
       </li>
     <% if @folders %>
@@ -63,7 +63,7 @@
         <li class="add_element_form add_file_form">
           <%= form_for @record, :remote => true do |f| %>
             <%= hidden_field_tag 'folder_id', folder.id, :id => nil, :class => 'folder_id' %>
-            <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %> <%= f.submit 'OK' %>
+            <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %><%= f.submit 'OK', :class => "new_element_submit" %>
           <% end %>
         </li>
         <% folder.records.each do |record| %>

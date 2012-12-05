@@ -56,7 +56,7 @@ header {
     padding: 0 12px;
   }
   a {
-    width: 80%;
+    width: 94%;
     line-height: 25px;
     padding-left: 25px;
     font: {
@@ -106,4 +106,36 @@ header {
 #bottom {
   position: absolute;
   bottom: 0;
+}
+
+#folder_name, .record_name {
+  @include border-top-left-radius(14px);
+  @include border-bottom-left-radius(14px);
+  border: 1px solid #a8a8a8;
+  padding: 4px 12px;
+  display: inline-block;
+  width: 150px;
+}
+
+#new_folder, .new_record {
+  text-align: center;
+}
+
+.new_element_submit {
+  @include border-top-right-radius(14px);
+  @include border-bottom-right-radius(14px);
+  @include background_gradient(top, #fff, #e6e6e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(#fff)}', endColorstr='#{ie-hex-str(#e6e6e6)}', GradientType=0);
+  cursor: pointer;
+  border: 1px solid #a8a8a8;
+  padding: 4px 12px;
+  font-weight: 400;
+  color: $dark_text;
+  text-align: center;
+  margin-left: -1px;
+  &:active {
+    @include single-box-shadow(#ccc, 2px, 2px, 2px, false, true);
+    @include background_gradient(top, #e6e6e6, #fff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(#e6e6e6)}', endColorstr='#{ie-hex-str(#fff)}', GradientType=0);
+  }
 }
