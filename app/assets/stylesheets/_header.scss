@@ -89,10 +89,16 @@ header {
 
 #current_folder {
   @include current_item($interstate_blue);
+  .delete_element {
+    display: inline-block;
+  }
 }
 
 #current_record {
   @include current_item(#b2b2b2);
+  .delete_element {
+    display: inline-block;
+  }
 }
 
 #current_page {
