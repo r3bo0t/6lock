@@ -78,3 +78,13 @@ strong {
   margin-left: 502px;
   padding: 25px 0 0 40px;
 }
+
+#tutorial {
+  margin: 20px 50px 0 0;
+  p {
+    padding-left: 15px;
+    color: $dark_text;
+    line-height: 40px;
+    border-left: 2px solid $green_triad;
+  }
+}
