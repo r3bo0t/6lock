@@ -98,28 +98,25 @@ input.info_password {
 }
 
 .toggle {
-  @include single-box-shadow(#aaa, 0px, 0px, 6px, 1px);
-  @include border-radius(2px);
   border: 1px solid #a8a8a8;
   width: 27px;
   height: 24px;
-  background: url(toggle.jpg);
+  background: url(toggle.png) center center no-repeat;
   margin-bottom: 3px;
   vertical-align: middle;
   cursor: pointer;
   margin-left: 10px;
   &:active {
-    @include single-box-shadow(#bbb, 0px, 0px, 2px, 1px);
-    @include background-image(linear-gradient(top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%), url(toggle.jpg));
+    @include single-box-shadow(#ccc, 2px, 2px, 2px, false, true);
   }
 }
 
 #forge {
   @extend .toggle;
   margin-left: 0;
-  background: url(forge.jpg);
+  background: url(forge.png) center center no-repeat;
   &:active {
-    @include background-image(linear-gradient(top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%), url(forge.jpg));
+    @include single-box-shadow(#ccc, 2px, 2px, 2px, false, true);
   }
 }
 
