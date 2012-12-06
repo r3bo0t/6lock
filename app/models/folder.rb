@@ -4,7 +4,7 @@ class Folder
 
   belongs_to :user
   embeds_many :records
-  accepts_nested_attributes_for :records, :allow_destroy => true, :reject_if => proc {|r| r['name'].blank?}
+  accepts_nested_attributes_for :records, :allow_destroy => true, :reject_if => proc {|r| r['name'].blank? }
 
   field :name, :type => String
 
