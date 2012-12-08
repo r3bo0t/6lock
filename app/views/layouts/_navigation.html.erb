@@ -47,6 +47,10 @@
         <%= content_tag :li, :id => ("current_folder" if folder == @current_folder), :class => "folder_link element_link" do %>
           <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>
           <a href="#" id="link_<%= folder.id %>" class="show_folder"><%= folder.name %></a>
+          <%= form_for folder, :remote => true, :html => { :class => "rename_element" } do |f| %>
+            <%= f.text_field :name, :size => '20', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %>
+          <% end %>
+          <input class="edit_element" type="button">
         <% end %>
       <% end %>
     <% end %>
@@ -57,7 +61,7 @@
 </div>
 <% if @folders %>
   <% @folders.each do |folder| %>
-    <div id="folder_<%= folder.id %>" class="files_bar" <%= 'style=z-index:4;' if folder == @current_folder %>>
+    <div id="folder_<%= folder.id %>" class="files_bar existing_files_bar" <%= 'style=z-index:4;' if folder == @current_folder %>>
       <ul class="files_nav elements_nav">
         <li class="add_element add_file"><a href="#">+</a></li>
         <li class="add_element_form add_file_form">
@@ -69,7 +73,12 @@
         <% folder.records.each do |record| %>
           <%= content_tag :li, :id => ("current_record" if record == @current_record), :class => "element_link" do %>
             <%= link_to image_tag('cross.png', :alt => 'delete'), record, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>
-            <%= link_to record.name, record %>
+            <%= link_to record.name, record, :id => "link_#{record.id}" %>
+            <%= form_for record, :remote => true, :html => { :class => "rename_element" } do |f| %>
+              <%= hidden_field_tag 'folder_id', folder.id, :id => nil %>
+              <%= f.text_field :name, :size => '20', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %>
+            <% end %>
+            <input class="edit_element" type="button">
           <% end %>
         <% end %>
       </ul>

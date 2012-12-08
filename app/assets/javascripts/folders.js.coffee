@@ -19,11 +19,13 @@ $ ->
         $('#add_folder_form').slideDown('fast')
   )
   # Slides the file creation form up and down
-  $('.add_file a').click(
+  $('.existing_files_bar .add_file a').click(
     ->
       if $(this).parent().next().css('display') == 'list-item'
+        console.log('up1')
         $(this).parent().next().slideUp('fast')
       else
+        console.log('down1')
         $(this).parent().next().slideDown('fast')
   )
   # Shows the selected files bar
@@ -35,4 +37,10 @@ $ ->
       $(this).parent().attr('id', 'current_folder')
       $('.files_bar').css('z-index', '1')
       $('#folder_' + $(this).attr('id').split('_')[1]).css('z-index', '4')
+  )
+  # Edit element form
+  $('.edit_element').click(
+    ->
+      $(this).prev().prev().hide()
+      $(this).prev('.rename_element').show()
   )

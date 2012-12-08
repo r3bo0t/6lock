@@ -1,0 +1,8 @@
+<% if @folder.valid? %>
+  $(function() {
+    $('#link_<%= @folder.id %>').next('.rename_element').hide()
+    $('#link_<%= @folder.id %>').html('<%= @folder.name %>').show()
+  })
+<% else %>
+  alert("Invalid name")
+<% end %>

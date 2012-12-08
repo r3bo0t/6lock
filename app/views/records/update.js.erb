@@ -1,0 +1,9 @@
+<% if @record.valid? %>
+  $(function() {
+    $('#link_<%= @record.id %>').next('.rename_element').hide()
+    $('#link_<%= @record.id %>').html('<%= @record.name %>').show()
+    $('#record_name').html('<%= @record.name.capitalize %>')
+  })
+<% else %>
+  alert("Invalid name")
+<% end %>

@@ -13,6 +13,18 @@ class FoldersController < ApplicationController
   end
 
   def update
+    @folder = Folder.where(:id => params[:id], :user_id => current_user.id).first
+    if @folder
+      @folder.update_attributes(params[:folder])
+
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js { render :nothing => true }
+      end
+    end
   end
 
   def edit

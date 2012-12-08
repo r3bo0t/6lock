@@ -1,13 +1,14 @@
 <% if @folder.valid? %>
   var content = '<li class="element_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>\
-                <a href="#" id="link_<%= @folder.id %>" class="show_folder"><%= @folder.name %></a></li>'
-  var bar = '<div id="folder_<%= @folder.id %>" class="files_bar">\
+                <a href="#" id="link_<%= @folder.id %>" class="show_folder"><%= @folder.name %></a><%= form_for @folder, :remote => true, :html => { :class => "rename_element" } do |f| %>\
+                <%= f.text_field :name, :size => '20', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %><% end %><input class="edit_element" type="button"></li>'
+  var bar = '<div id="folder_<%= @folder.id %>" class="files_bar new_files_bar">\
               <ul class="files_nav elements_nav">\
                 <li class="add_element add_file"><a href="#">+</a></li>\
                 <li class="add_element_form add_file_form">\
                   <%= form_for @record, :remote => true do |f| %>\
                     <%= hidden_field_tag 'folder_id', @folder.id, :id => nil, :class => 'folder_id' %>\
-                    <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %> <%= f.submit 'OK' %>\
+                    <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %><%= f.submit 'OK', :class => "new_element_submit" %>\
                   <% end %>\
                 </li>\
               </ul>\
@@ -19,27 +20,39 @@
     $('#add_folder_form').after(content)
     //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
-      $('a:first-child', this).css('display', 'inline-block')
+      if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
+        $('a:first-child', this).css('display', 'inline-block')
     }, function() {
-      $('a:first-child', this).css('display', 'none')
+      if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
+        $('a:first-child', this).css('display', 'none')
     })
     $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
     })
     //---------------- Slides the file creation form up and down
-    $('.add_file a').click(function() {
-      if ($(this).parent().next().css('display') == 'list-item')
+    $('.new_files_bar .add_file a').click(function() {
+      if ($(this).parent().next().css('display') == 'list-item') {
+        console.log('up2')
         $(this).parent().next().slideUp('fast')
-      else
+      } else {
+        console.log('down2')
         $(this).parent().next().slideDown('fast')
+      }
     })
     //---------------- Shows the selected files bar
     $('.show_folder').click(function() {
       if ($('#current_folder') != undefined)
         $('#current_folder').attr('id', '')
+      $('.show_folder').prev().css('display', 'none')
+      $(this).prev().css('display', 'inline-block')
       $(this).parent().attr('id', 'current_folder')
       $('.files_bar').css('z-index', '1')
       $('#folder_' + $(this).attr('id').split('_')[1]).css('z-index', '4')
+    })
+    //---------------- Edit element form
+    $('.edit_element').click(function() {
+      $(this).prev().prev().hide()
+      $(this).prev('.rename_element').show()
     })
   })
 <% else %>

@@ -36,15 +36,25 @@ class RecordsController < ApplicationController
   def update
     folder = Folder.where(:id => params[:folder_id], :user_id => current_user.id).first
     if folder
-      record = folder.records.find(params[:id])
-      record.update_attributes(params[:record])
-      record.set_password(session[:master])
-      record.save
+      @record = folder.records.find(params[:id])
+      @record.update_attributes(params[:record])
+      if params[:record][:decrypted_password]
+        @record.set_password(session[:master])
+        @record.save
+      end
 
-      redirect_to record_path(record)
+      respond_to do |format|
+        format.html { redirect_to record_path(@record) }
+        format.js
+      end
     else
-      flash[:alert] = "You are not allowed to access this resource."
-      redirect_to home_path
+      respond_to do |format|
+        format.html do
+          flash[:alert] = "You are not allowed to access this resource."
+          redirect_to home_path
+        end
+        format.js { render :nothing => true }
+      end
     end
   end
 
