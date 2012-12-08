@@ -22,10 +22,8 @@ $ ->
   $('.existing_files_bar .add_file a').click(
     ->
       if $(this).parent().next().css('display') == 'list-item'
-        console.log('up1')
         $(this).parent().next().slideUp('fast')
       else
-        console.log('down1')
         $(this).parent().next().slideDown('fast')
   )
   # Shows the selected files bar

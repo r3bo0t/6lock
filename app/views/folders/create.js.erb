@@ -32,10 +32,8 @@
     //---------------- Slides the file creation form up and down
     $('.new_files_bar .add_file a').click(function() {
       if ($(this).parent().next().css('display') == 'list-item') {
-        console.log('up2')
         $(this).parent().next().slideUp('fast')
       } else {
-        console.log('down2')
         $(this).parent().next().slideDown('fast')
       }
     })
