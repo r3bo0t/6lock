@@ -17,20 +17,8 @@
     $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
     })
-    //---------------- Slides the file creation form up and down
-    $('.add_file a').click(function() {
-      if ($(this).parent().next().css('display') == 'list-item')
-        $(this).parent().next().slideUp('fast')
-      else
-        $(this).parent().next().slideDown('fast')
-    })
-    //---------------- Edit element form
-    $('.edit_element').click(function() {
-      $(this).prev().prev().hide()
-      $(this).prev('.rename_element').show()
-    })
   })
 <% else %>
-  alert("Invalid name")
+  alert("Name too short or too long (must be >= 1 and <= 23)")
 <% end %>
 

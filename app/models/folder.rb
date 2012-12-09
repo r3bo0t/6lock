@@ -10,7 +10,7 @@ class Folder
 
   index({ name: 1, user_id: 1, "records.name" => 1 }, { background: true })
 
-  validates_presence_of :name
+  validates :name, :presence => true, :length => { :maximum => 23 }
 
   attr_accessible :name, :created_at, :updated_at, :user_id, :records_attributes
 

@@ -16,7 +16,7 @@ class Record
   field :notes, :type => String, :default => ""
   field :access_count, :type => Integer, :default => 0
 
-  validates_presence_of :name
+  validates :name, :presence => true, :length => { :maximum => 23 }
 
   attr_accessible :name, :username, :password, :decrypted_password, :url, :notes, :created_at, :updated_at
   attr_accessor :decrypted_password
