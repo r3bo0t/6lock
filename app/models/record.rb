@@ -51,6 +51,11 @@ class Record
     end
   end
 
+  # only for the collection_select needs
+  def folder_id
+    self.folder.id
+  end
+
   class << self
     def often_used(folders, master)
       records = extract_records_from(folders).sort_by(&:access_count).reverse

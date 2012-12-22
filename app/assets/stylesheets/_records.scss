@@ -210,3 +210,11 @@ input.info_password {
   @include basic_button;
   color: #fff;
 }
+
+#current_record_folder_id {
+  background: #fff;
+  height: 35px;
+  width: 200px;
+  padding-left: 8px;
+  border: 2px solid #ccc;
+}

@@ -37,9 +37,21 @@ class RecordsController < ApplicationController
     folder = Folder.where(:id => params[:folder_id], :user_id => current_user.id).first
     if folder
       @record = folder.records.find(params[:id])
-      if @record.update_attributes(params[:record]) && params[:record][:decrypted_password]
-        @record.set_password(session[:master])
-        @record.save
+      if @record.update_attributes(params[:record])
+        if params[:record][:decrypted_password] && !params[:record][:decrypted_password].empty?
+          @record.set_password(session[:master])
+          @record.save
+        end
+
+        if params[:current_record]
+          next_folder = Folder.where(:id => params[:current_record][:folder_id], :user_id => current_user.id).first
+          if next_folder && next_folder != folder
+            new_record = @record.dup
+            next_folder.records << new_record
+            @record.destroy
+            @record = new_record
+          end
+        end
 
         respond_to do |format|
           format.html { redirect_to record_path(@record) }

@@ -13,6 +13,8 @@
 <%= form_for @current_record do |f| %>
   <%= hidden_field_tag 'folder_id', @current_folder.id, :id => nil, :class => 'folder_id' %>
 
+  <p>Move to folder : <%= collection_select(:current_record, :folder_id, @folders, :id, :name, {}, { :selected_value => @current_record.folder.id }) %></p>
+
   <%= f.submit 'Done', :id => "edit_record" %>
 
   <div class="clear_right"></div>
