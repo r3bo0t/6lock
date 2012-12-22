@@ -63,3 +63,7 @@ $ ->
       $('#overlay').hide()
       $('#overlay_box').hide()
   )
+  # Quick access
+  $('#quick_access').change(
+    -> location.href = 'http://localhost:3000/records/' + $(this).val()
+  )

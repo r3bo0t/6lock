@@ -3,6 +3,10 @@
     <li class="separator"></li>
     <% if user_signed_in? %>
       <li>
+        <%= collection_select(:quick, :access, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Quick access" }) %>
+      </li>
+      <li class="separator"></li>
+      <li>
         <%= link_to 'Home', home_path, :id => ("current_page" if controller.controller_name == 'home') %>
       </li>
       <li class="separator"></li>
