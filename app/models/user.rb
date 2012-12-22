@@ -14,9 +14,6 @@ class User
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
-  validates_presence_of :email
-  validates_presence_of :encrypted_password
-
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -48,6 +45,11 @@ class User
   index({ email: 1 }, { unique: true, background: true })
 
   field :name, :type => String
-  validates_presence_of :name
+
+  validates_presence_of :encrypted_password
+  validates :name, :presence => :true, :length => { :maximum => 30, :too_long => 'is too long (> 30)' }
+  validates :email, :presence => :true, :length => { :maximum => 100, :too_long => 'is too long (> 100)' }
+  validates :password, :presence => :true, :length => { :maximum => 100, :too_long => 'is too long (> 100)' }
+
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
 end

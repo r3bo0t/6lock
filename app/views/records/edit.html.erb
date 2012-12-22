@@ -1,5 +1,15 @@
 <h1><%= @current_record.name.capitalize %></h1>
 
+<% if flash[:record_errors] %>
+  <div id="flash_alert">
+    <ul>
+    <% flash[:record_errors].messages.each do |error| %>
+      <li><%= error[1][0].capitalize %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @current_record do |f| %>
   <%= hidden_field_tag 'folder_id', @current_folder.id, :id => nil, :class => 'folder_id' %>
 
@@ -63,5 +73,3 @@
 
   <p id="notes"><%= f.text_area :notes, :cols => "50", :rows => "4" %></p>
 <% end %>
-
-<p><%= flash[:record_errors].messages.inspect if flash[:record_errors] %></p>
