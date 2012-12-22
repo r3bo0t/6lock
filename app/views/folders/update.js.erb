@@ -4,5 +4,5 @@
     $('#link_<%= @folder.id %>').html('<%= @folder.name %>').show()
   })
 <% else %>
-  alert("Invalid name")
+  alert("The name you submitted contains invalid characters or is too long (> 23).")
 <% end %>

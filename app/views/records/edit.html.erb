@@ -63,3 +63,5 @@
 
   <p id="notes"><%= f.text_area :notes, :cols => "50", :rows => "4" %></p>
 <% end %>
+
+<p><%= flash[:record_errors].messages.inspect if flash[:record_errors] %></p>

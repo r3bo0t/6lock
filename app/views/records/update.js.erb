@@ -5,5 +5,5 @@
     $('#record_name').html('<%= @record.name.capitalize %>')
   })
 <% else %>
-  alert("Invalid name")
+  alert("The name you submitted contains invalid characters or is too long (> 23).")
 <% end %>

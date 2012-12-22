@@ -37,15 +37,22 @@ class RecordsController < ApplicationController
     folder = Folder.where(:id => params[:folder_id], :user_id => current_user.id).first
     if folder
       @record = folder.records.find(params[:id])
-      @record.update_attributes(params[:record])
-      if params[:record][:decrypted_password]
+      if @record.update_attributes(params[:record]) && params[:record][:decrypted_password]
         @record.set_password(session[:master])
         @record.save
-      end
 
-      respond_to do |format|
-        format.html { redirect_to record_path(@record) }
-        format.js
+        respond_to do |format|
+          format.html { redirect_to record_path(@record) }
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.html do
+            flash[:record_errors] = @record.errors
+            redirect_to edit_record_path(@record)
+          end
+          format.js
+        end
       end
     else
       respond_to do |format|
