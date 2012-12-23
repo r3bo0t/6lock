@@ -5,7 +5,7 @@
     $('#folder_<%= @folder.id %> .record_name').val('')
     form = $('#folder_<%= @folder.id %> .add_file_form')
     form.slideUp('fast')
-    form.after(content)
+    form.parent().next('.wrapper').prepend(content)
     //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')

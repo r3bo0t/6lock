@@ -20,7 +20,7 @@ $ ->
       $(this).parent().next().slideDown('fast')
 
   # Shows the selected files bar
-  $('#folders_nav').on 'click', '.show_folder', ->
+  $('.elements_nav').on 'click', '.show_folder', ->
     $('#current_folder').attr('id', '') if $('#current_folder') != undefined
     $('.show_folder').prev().css('display', 'none')
     $(this).prev().css('display', 'inline-block')
@@ -29,7 +29,7 @@ $ ->
     $('#folder_' + $(this).attr('id').split('_')[1]).css('z-index', '4')
 
   # Edit element form
-  $('#folders_nav').on 'click', '.edit_element', ->
+  $('.elements_nav').on 'click', '.edit_element', ->
     $(this).prev().prev().hide()
     $(this).prev('.rename_element').show()
   $('#current_record').on 'click', '.edit_element', ->

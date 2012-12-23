@@ -196,3 +196,13 @@ header {
   padding-left: 8px;
   border: 2px solid #ccc;
 }
+
+.wrapper {
+  height: 392px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.files_nav + .wrapper {
+  height: 605px;
+}
