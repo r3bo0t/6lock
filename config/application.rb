@@ -22,7 +22,6 @@ module Sixlock
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-
     end
 
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|

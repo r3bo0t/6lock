@@ -92,3 +92,45 @@ strong {
     border-left: 2px solid $green_triad;
   }
 }
+
+#unlocking {
+  text-align: center;
+  h1 {
+    margin: 50px 0 40px;
+  }
+  input {
+    padding: 10px 15px;
+    border: 2px solid $dark_text;
+    &#unlock {
+      border: 2px solid darken($electric_blue, 20%);
+      background: url(toggle.png) center center no-repeat $electric_blue;
+      cursor: pointer;
+      width: 52px;
+    }
+  }
+  p {
+    margin-top: 10px;
+  }
+  #sign_up {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid darken($green_triad, 10%);
+    background: $green_triad;
+    width: 344px;
+    color: #000;
+  }
+  #shared_links {
+    margin-top: 50px;
+  }
+  #forgot_password {
+    @extend #sign_up;
+    border: 2px solid darken($red_triad, 20%);
+    background: $red_triad;
+    margin-top: 10px;
+  }
+  #flash_alert {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
