@@ -1,0 +1,10 @@
+// Place all the styles related to the sixlock controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#topbar {
+  height: 60px;
+  @include background_gradient(top, #2c2c2c, darken(#2c2c2c, 10%));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(#2c2c2c)}', endColorstr='#{ie-hex-str(darken(#2c2c2c, 10%))}', GradientType=0);
+  @include single-box-shadow(#484848, 0px, 5px, 10px);
+}

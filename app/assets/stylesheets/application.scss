@@ -17,6 +17,8 @@
 @import "home";
 @import "records";
 @import "users";
+@import "sixlock";
+@import "menu";
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -132,5 +134,8 @@ strong {
     width: 90%;
     margin: 0 auto;
     margin-top: 10px;
+  }
+  #user_remember_me {
+    border: none;
   }
 }

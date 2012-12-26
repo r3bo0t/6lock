@@ -1,7 +1,8 @@
 class SixlockController < ApplicationController
 
-  def home
-    # Redirection temporaire
-    redirect_to home_path
+  def who_is_it_for
+  end
+
+  def features
   end
 end

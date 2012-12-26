@@ -1,0 +1,14 @@
+<div id="menu">
+  <div id="title">
+    <h1><%= link_to '6LOCK', root_path %></h1>
+    <p>Never forget a password anymore</p>
+  </div>
+  <ul>
+    <% controller.action_methods.each do |action| %>
+      <%= content_tag :li, :id => ("current_action" if action == controller.action_name) do %>
+        <%= link_to action.humanize.upcase, if action == 'who_is_it_for' then root_path else send("#{action}_path") end %>
+      <% end %>
+    <% end %>
+    <li><%= link_to 'SIGN IN', new_user_session_path %></li>
+  </ul>
+</div>
