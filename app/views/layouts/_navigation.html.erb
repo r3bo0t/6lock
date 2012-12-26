@@ -1,41 +1,28 @@
 <div id="left_bar">
   <ul id="main_nav">
     <li class="separator"></li>
-    <% if user_signed_in? %>
-      <li>
-        <%= collection_select(:quick, :access, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Quick access" }) %>
-      </li>
-      <li class="separator"></li>
-      <li>
-        <%= link_to 'Home', home_path, :id => ("current_page" if controller.controller_name == 'home') %>
-      </li>
-      <li class="separator"></li>
-      <li>
-        <%= link_to 'Account', edit_user_registration_path, :id => ("current_page" if controller.controller_name == 'registrations') %>
-      </li>
-      <li class="separator"></li>
-      <li>
-        <span class="fake_link"<%= "id=current_page" if controller.controller_name == 'records' %>>Folders</span>
-      </li>
+    <li>
+      <%= collection_select(:quick, :access, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Quick access" }) %>
+    </li>
+    <li class="separator"></li>
+    <li>
+      <%= link_to 'Home', home_path, :id => ("current_page" if controller.controller_name == 'home') %>
+    </li>
+    <li class="separator"></li>
+    <li>
+      <%= link_to 'Account', edit_user_registration_path, :id => ("current_page" if controller.controller_name == 'registrations') %>
+    </li>
+    <li class="separator"></li>
+    <li>
+      <span class="fake_link"<%= "id=current_page" if controller.controller_name == 'records' %>>Folders</span>
+    </li>
 
-      <div id="bottom">
-        <li class="separator"></li>
-        <li>
-          <%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %>
-        </li>
-      </div>
-    <% else %>
-      <li>
-        <%= link_to "Sixlock", root_path %>
-      </li>
+    <div id="bottom">
       <li class="separator"></li>
       <li>
-        <%= link_to 'Sign in', new_user_session_path %>
+        <%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %>
       </li>
-      <li>
-        <%= link_to 'Sign up', new_user_registration_path %>
-      </li>
-    <% end %>
+    </div>
     <li class="separator"></li>
   </ul>
   <% if user_signed_in? %>
@@ -54,7 +41,7 @@
             <%= link_to image_tag('cross.png', :alt => 'delete'), folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>
             <a href="#" id="link_<%= folder.id %>" class="show_folder"><%= folder.name %></a>
             <%= form_for folder, :remote => true, :html => { :class => "rename_element" } do |f| %>
-              <%= f.text_field :name, :size => '18', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %>
+              <%= f.text_field :name, :size => '16', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %>
             <% end %>
             <input class="edit_element" type="button">
           <% end %>
@@ -84,7 +71,7 @@
             <%= link_to record.name, record, :id => "link_#{record.id}" %>
             <%= form_for record, :remote => true, :html => { :class => "rename_element" } do |f| %>
               <%= hidden_field_tag 'folder_id', folder.id, :id => nil %>
-              <%= f.text_field :name, :size => '20', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %>
+              <%= f.text_field :name, :size => '16', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %>
             <% end %>
             <input class="edit_element" type="button">
           <% end %>

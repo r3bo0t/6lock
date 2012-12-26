@@ -8,3 +8,22 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(#2c2c2c)}', endColorstr='#{ie-hex-str(darken(#2c2c2c, 10%))}', GradientType=0);
   @include single-box-shadow(#484848, 0px, 5px, 10px);
 }
+
+#patterns {
+  @include single-box-shadow(#c6c6c6, 0px, 50px, 80px);
+  height: 420px;
+  background: url(dark_mosaic.png);
+  border-bottom: 1px solid #fff;
+}
+
+#maintitle {
+  width: 930px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 80px;
+  p {
+    font-size: 1.3em;
+    font-weight: 400;
+    color: $interstate_blue;
+  }
+}

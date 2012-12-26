@@ -170,6 +170,7 @@ header {
     line-height: 25px;
     border: none;
     padding-left: 4px;
+    height: 25px;
   }
   .edit_element_submit {
     @include background_gradient(top, #fff, #e6e6e6);
@@ -181,6 +182,7 @@ header {
     color: $dark_text;
     text-align: center;
     border-left: 1px solid #ccc;
+    height: 25px;
     &:active {
       @include single-box-shadow(#ccc, 2px, 2px, 2px, false, true);
       @include background_gradient(top, #e6e6e6, #fff);

@@ -48,6 +48,14 @@ h1 {
   color: #b2b2b2;
 }
 
+h2 {
+  font: {
+    size: 2em;
+    weight: 400;
+  }
+  color: #fff;
+}
+
 a {
   text-decoration: none;
 }
@@ -108,6 +116,7 @@ strong {
       background: url(toggle.png) center center no-repeat $electric_blue;
       cursor: pointer;
       width: 52px;
+      height: 42px;
     }
   }
   p {
