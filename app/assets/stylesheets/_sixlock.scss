@@ -14,16 +14,26 @@
   height: 420px;
   background: url(dark_mosaic.png);
   border-bottom: 1px solid #fff;
+  img {
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 #maintitle {
   width: 930px;
   margin: 0 auto;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 40px;
   p {
     font-size: 1.3em;
     font-weight: 400;
     color: $interstate_blue;
   }
+}
+
+#page {
+  width: 930px;
+  margin: 0 auto;
+  padding-top: 150px;
 }
