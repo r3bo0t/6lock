@@ -1,0 +1,38 @@
+// Place all the styles related to the folders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#jump_in {
+  @include border-radius(6px);
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+  h3 {
+    font-size: 1.8em;
+    font-weight: 400;
+    color: black;
+  }
+  p {
+    font-weight: 400;
+    color: #737373;
+  }
+  a{
+    @include border-radius(14px);
+    float: right;
+    display: inline-block;
+    width: 180px;
+    height: 45px;
+    background: $electric_blue;
+    border: 5px solid #ccc;
+    color: #fff;
+    font-weight: 400;
+    text-align: center;
+    line-height: 45px;
+    margin: 40px 35px 0 0;
+  }
+}
+
+#jump_text {
+  margin: 40px 0 0 35px;
+}

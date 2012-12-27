@@ -19,6 +19,7 @@
 @import "users";
 @import "sixlock";
 @import "menu";
+@import "who_is_it_for";
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -34,6 +35,11 @@ html, body {
 
 img {
   border: none;
+}
+
+.sixlock {
+  font-weight: 400;
+  color: $electric_blue;
 }
 
 .clear_right {
