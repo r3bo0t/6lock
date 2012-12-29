@@ -36,3 +36,16 @@
 #jump_text {
   margin: 40px 0 0 35px;
 }
+
+.text {
+  margin-top: 40px;
+}
+
+.left_icon {
+  float: left;
+  margin-top: 40px;
+  & + p {
+    margin-top: 60px;
+    padding-left: 160px;
+  }
+}
