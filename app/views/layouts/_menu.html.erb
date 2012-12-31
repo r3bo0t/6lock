@@ -4,13 +4,16 @@
     <p>Never forget a password anymore</p>
   </div>
   <ul>
-    <% SixlockController.action_methods.each do |action| %>
+    <% %w(who_is_it_for features).each do |action| %>
       <%= content_tag :li, :id => ("current_action" if action == controller.action_name) do %>
         <%= link_to action.humanize.upcase, if action == 'who_is_it_for' then root_path else send("#{action}_path") end %>
       <% end %>
     <% end %>
-    <%= content_tag :li, :id => ("current_action" if controller.action_name == 'new') do %>
-      <%= link_to 'SIGN IN', new_user_session_path %></li>
+    <%= content_tag :li, :id => ("current_action" if controller.controller_name == 'sessions' && controller.action_name == 'new') do %>
+      <%= link_to 'SIGN IN', new_user_session_path %>
+    <% end %>
+    <%= content_tag :li, :id => ("current_action" if controller.controller_name == 'registrations' && controller.action_name == 'new') do %>
+      <%= link_to 'SIGN UP', new_user_registration_path %>
     <% end %>
   </ul>
 </div>

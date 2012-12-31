@@ -37,15 +37,28 @@
   margin: 40px 0 0 35px;
 }
 
-.text {
+.margin {
   margin-top: 40px;
+}
+
+.text {
+  line-height: 30px;
 }
 
 .left_icon {
   float: left;
-  margin-top: 40px;
+  margin-top: 55px;
   & + p {
     margin-top: 60px;
     padding-left: 160px;
+  }
+}
+
+.right_icon {
+  float: right;
+  margin-top: 85px;
+  & + p {
+    margin-top: 60px;
+    padding-right: 160px;
   }
 }

@@ -5,4 +5,7 @@ class SixlockController < ApplicationController
 
   def features
   end
+
+  def user_agreement
+  end
 end

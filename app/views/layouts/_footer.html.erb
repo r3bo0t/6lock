@@ -1,0 +1,19 @@
+<div id="footer">
+  <ul>
+    <% %w(who_is_it_for features).each do |action| %>
+      <%= content_tag :li do %>
+        <%= link_to action.humanize, if action == 'who_is_it_for' then root_path else send("#{action}_path") end %>
+      <% end %>
+      <li>|</li>
+    <% end %>
+    <li>
+      <%= link_to 'Sign in', new_user_session_path %></li>
+    </li>
+    <li>|</li>
+    <li>
+      <%= link_to 'Sign up', new_user_registration_path %></li>
+    </li>
+  </ul>
+  <p><%= link_to 'User Agreement', user_agreement_path %></p>
+  <p>© 2012 6LOCK. All rights reserved.</p>
+</div>

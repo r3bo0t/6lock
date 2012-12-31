@@ -35,5 +35,35 @@
 #page {
   width: 930px;
   margin: 0 auto;
-  padding-top: 150px;
+  padding: 150px 0 80px;
+}
+
+footer {
+  height: 210px;
+  background: #191919;
+}
+
+#footer {
+  width: 930px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 40px;
+  ul {
+    list-style-type: none;
+  }
+  li {
+    display: inline;
+    margin-right: 15px;
+    color: #fff;
+    font-size: 0.8em;
+  }
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  p {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #fff;
+  }
 }
