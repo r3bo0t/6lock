@@ -12,7 +12,7 @@ class Folder
 
   validates :name, :presence => true, :length => { :maximum => 23 }
 
-  attr_accessible :name, :created_at, :updated_at, :user_id, :records_attributes
+  attr_accessible :name, :created_at, :updated_at, :records_attributes
 
   default_scope order_by(:name => :asc)
 end
