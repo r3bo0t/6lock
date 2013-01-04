@@ -1,5 +1,6 @@
 require 'digest/sha2'
 require 'aescrypt'
+require 'csv'
 
 class Record
   include Mongoid::Document
@@ -72,6 +73,15 @@ class Record
       records = []
       folders.each {|f| records << f.records }
       records.flatten
+    end
+
+    def to_csv(records)
+      CSV.generate do |csv|
+        csv << ['name', 'username', 'decrypted_password', 'url', 'notes']
+        records.each do |record|
+          csv << record.attributes.values_at('name', 'username') + record.decrypted_password.to_a + record.attributes.values_at('url', 'notes')
+        end
+      end
     end
   end
 end

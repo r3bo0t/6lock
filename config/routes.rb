@@ -5,7 +5,12 @@ Sixlock::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
 
-  resources :records, :except => [:index, :new]
+  resources :records, :except => [:index, :new] do
+    collection do
+      get 'export', :defaults => { :format => 'csv' }
+    end
+  end
+
   resources :folders, :except => [:show, :new, :index]
 
   match 'home' => 'home#index', :as => :home, :via => :get

@@ -98,4 +98,12 @@ class RecordsController < ApplicationController
       format.js { render :nothing => true }
     end
   end
+
+  def export
+    records = Record.extract_records_from(current_user.folders).sort_by(&:name)
+    records.each {|r| r.set_decrypted_password(session[:master]) }
+    respond_to do |format|
+      format.csv { send_data Record.to_csv(records), :filename => '6lock_records.csv' }
+    end
+  end
 end
