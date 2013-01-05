@@ -31,12 +31,24 @@
       <p><%= f.email_field :email %></p>
     </div>
   </div>
+
+  <div class="account_info">
+    <div class="info_title">
+      <p>Password</p>
+    </div>
+    <div class="info_content">
+      <p><%= f.password_field :password, :autocomplete => "off", :class => ("field_with_errors" if resource.errors.messages[:password]) %></p>
+    </div>
+  </div>
+
+  <div class="account_info">
+    <div class="info_title">
+      <p>Confirmation</p>
+    </div>
+    <div class="info_content">
+      <p><%= f.password_field :password_confirmation %></p>
+    </div>
+  </div>
 <% end %>
-
-<%#= f.label :password %>
-<%#= f.password_field :password, :autocomplete => "off" %>
-
-<%#= f.label :password_confirmation %>
-<%#= f.password_field :password_confirmation %>
-
+<%= resource.errors.messages.inspect %>
 <%= link_to '<div id="delete_account"><p>Delete</p></div>'.html_safe, registration_path(resource_name), :data => { :confirm => "Are you sure you want to destroy your account? All your data will be lost forever : there is no coming back." }, :method => :delete %>

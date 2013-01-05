@@ -12,7 +12,7 @@ end
 gem 'rails_admin'
 gem 'jquery-rails'
 gem 'mongoid', '~> 3.0.1'
-gem 'devise', '~> 2.1.2'
+gem 'devise', '= 2.1.2'
 
 group :development do
   gem 'rspec-rails', '~> 2.11.0'
