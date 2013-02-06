@@ -128,7 +128,7 @@ strong {
   p {
     margin-top: 10px;
   }
-  #sign_up {
+  .sign_x {
     display: inline-block;
     padding: 10px 15px;
     border: 2px solid darken($green_triad, 10%);
@@ -140,7 +140,7 @@ strong {
     margin-top: 50px;
   }
   #forgot_password {
-    @extend #sign_up;
+    @extend .sign_x;
     border: 2px solid darken($red_triad, 20%);
     background: $red_triad;
     margin-top: 10px;
@@ -152,5 +152,24 @@ strong {
   }
   #user_remember_me {
     border: none;
+  }
+  #sign_up_fields input {
+    width: 344px;
+  }
+  #sign_up_button {
+    @extend .sign_x;
+    border: 2px solid darken($electric_blue, 20%);
+    background: $electric_blue;
+    margin-bottom: 50px;
+    cursor: pointer;
+    width: 378px;
+    height: 46px;
+    font-size: 1em;
+  }
+}
+#wrong_place {
+  padding: 5px 0 0 10px;
+  a {
+    text-decoration: underline;
   }
 }

@@ -13,9 +13,7 @@
   </head>
   <body>
     <div id="container" class="container">
-      <div id="topbar">
-        <%= render 'layouts/menu' %>
-      </div>
+      <p id="wrong_place"><%= link_to "Wait... what? I'm in the wrong place, take me back", root_path %></p>
       <div id="unlocking">
         <%= render 'layouts/messages' %>
         <%= yield %>
