@@ -48,7 +48,7 @@ $ ->
           for i in [0...length]
             select = array[Math.floor(Math.random() * array.length)]
             value = select[Math.floor(Math.random() * select.length)]
-            value = value.toUpperCase() if select = characters_list && [true, false][Math.floor(Math.random() * 2)]
+            value = value.toUpperCase() if select == characters_list && [true, false][Math.floor(Math.random() * 2)]
             generated += value
           $('#generated').val(generated)
         else
