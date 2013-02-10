@@ -23,6 +23,21 @@ input#edit_account {
   @extend input#edit_record;
 }
 
-input.field_with_errors {
+input.field_with_errors, #unlocking input.field_with_errors {
   border: 2px solid $red_triad;
+}
+
+.input_error_message {
+  display: inline-block;
+  background: lighten($red_triad, 10%);
+  width: 344px;
+  color: #000;
+}
+
+.input_error_text {
+  padding-left: 164px;
+  margin-top: 20px;
+  span {
+    text-align: center;
+  }
 }

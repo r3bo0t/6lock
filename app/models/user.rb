@@ -46,7 +46,6 @@ class User
 
   field :name, :type => String
 
-  validates_presence_of :encrypted_password
   validates :name, :presence => :true, :length => { :maximum => 30, :too_long => 'is too long (> 30)' }
   validates :email, :length => { :maximum => 100, :too_long => 'is too long (> 100)' }
 

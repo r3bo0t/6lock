@@ -1,15 +1,42 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
   <div id="sign_up_fields">
-    <p><%= f.text_field :name, :placeholder => "Name" %></p>
+    <p>
+      <% if resource.errors.messages[:name] %>
+        <% resource.errors.messages[:name].each do |message| %>
+          <span class="input_error_message"><%= message %></span><br>
+        <% end %>
+      <% end %>
+      <%= f.text_field :name, :placeholder => "Name", :class => ("field_with_errors" if resource.errors.messages[:name]) %>
+    </p>
 
-    <p><%= f.email_field :email, :placeholder => "E-mail" %></p>
+    <p>
+      <% if resource.errors.messages[:email] %>
+        <% resource.errors.messages[:email].each do |message| %>
+          <span class="input_error_message"><%= message %></span><br>
+        <% end %>
+      <% end %>
+      <%= f.email_field :email, :placeholder => "E-mail", :class => ("field_with_errors" if resource.errors.messages[:email]) %>
+    </p>
 
-    <p><%= f.password_field :password, :placeholder => "Password" %></p>
+    <p>
+      <% if resource.errors.messages[:password] %>
+        <% resource.errors.messages[:password].each do |message| %>
+          <span class="input_error_message"><%= message %></span><br>
+        <% end %>
+      <% end %>
+      <%= f.password_field :password, :placeholder => "Password", :class => ("field_with_errors" if resource.errors.messages[:password]) %>
+    </p>
 
-    <p><%= f.password_field :password_confirmation, :placeholder => "Confirm password" %></p>
+    <p>
+      <% if resource.errors.messages[:password_confirmation] %>
+        <% resource.errors.messages[:password_confirmation].each do |message| %>
+          <span class="input_error_message"><%= message %></span><br>
+        <% end %>
+      <% end %>
+      <%= f.password_field :password_confirmation, :placeholder => "Confirm password", :class => ("field_with_errors" if resource.errors.messages[:confirm_password]) %>
+    </p>
   </div>
 
   <p><%= f.submit "Sign up", :id => "sign_up_button" %></p>
