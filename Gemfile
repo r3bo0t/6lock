@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -9,7 +9,7 @@ group :assets do
   gem 'compass-rails', '~> 1.0.3'
 end
 
-gem 'rails_admin'
+gem 'rails_admin', '= 0.3.0'
 gem 'jquery-rails'
 gem 'mongoid', '~> 3.0.1'
 gem 'devise', '= 2.1.2'

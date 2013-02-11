@@ -7,6 +7,12 @@ RailsAdmin.config do |config|
   # require 'i18n'
   # I18n.default_locale = :de
 
+  config.authorize_with do
+    authenticate_or_request_with_http_basic('Biohazard zone') do |username, password|
+      username == 'ImThe6lockMaster' && password == 'You_2377ShallN0t_5914Pass+F3arMyWratH'
+    end
+  end
+
   config.current_user_method { current_user } # auto-generated
 
   # If you want to track changes on your models:
@@ -81,13 +87,13 @@ RailsAdmin.config do |config|
 
   # config.model Folder do
   #   # Found associations:
-  #     configure :user, :belongs_to_association 
+  #     configure :user, :belongs_to_association
   #     configure :records, :has_many_association   #   # Found columns:
-  #     configure :_type, :text         # Hidden 
-  #     configure :_id, :bson_object_id 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :bson_object_id         # Hidden 
+  #     configure :_type, :text         # Hidden
+  #     configure :_id, :bson_object_id
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :bson_object_id         # Hidden
   #     configure :name, :string   #   # Sections:
   #   list do; end
   #   export do; end
@@ -99,15 +105,15 @@ RailsAdmin.config do |config|
   # config.model Record do
   #   # Found associations:
   #   # Found columns:
-  #     configure :_type, :text         # Hidden 
-  #     configure :_id, :bson_object_id 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :name, :string 
-  #     configure :username, :text 
-  #     configure :password, :password         # Hidden 
-  #     configure :url, :text 
-  #     configure :notes, :text 
+  #     configure :_type, :text         # Hidden
+  #     configure :_id, :bson_object_id
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :name, :string
+  #     configure :username, :text
+  #     configure :password, :password         # Hidden
+  #     configure :url, :text
+  #     configure :notes, :text
   #     configure :access_count, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -119,23 +125,23 @@ RailsAdmin.config do |config|
   # config.model User do
   #   # Found associations:
   #     configure :folders, :has_many_association   #   # Found columns:
-  #     configure :_type, :text         # Hidden 
-  #     configure :_id, :bson_object_id 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :email, :text 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :text         # Hidden 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :text 
-  #     configure :last_sign_in_ip, :text 
-  #     configure :failed_attempts, :integer 
-  #     configure :locked_at, :datetime 
+  #     configure :_type, :text         # Hidden
+  #     configure :_id, :bson_object_id
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :email, :text
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :text         # Hidden
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :text
+  #     configure :last_sign_in_ip, :text
+  #     configure :failed_attempts, :integer
+  #     configure :locked_at, :datetime
   #     configure :name, :string   #   # Sections:
   #   list do; end
   #   export do; end

@@ -1,5 +1,5 @@
 Sixlock::Application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  mount RailsAdmin::Engine => '/openthegates', :as => 'rails_admin'
 
   root :to => 'sixlock#who_is_it_for'
 
