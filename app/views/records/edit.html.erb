@@ -1,3 +1,6 @@
+<% title = "Edit #{@current_record.name.capitalize}" %>
+<% set_head(title) %>
+
 <h1><%= @current_record.name.capitalize %></h1>
 
 <% if flash[:record_errors] %>

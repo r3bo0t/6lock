@@ -1,3 +1,6 @@
+<% title = @current_record.name.capitalize %>
+<% set_head(title) %>
+
 <h1 id="record_name"><%= @current_record.name.capitalize %></h1>
 
 <%= link_to '<div id="edit_record"><p>Edit</p></div>'.html_safe, edit_record_path(@current_record) %>

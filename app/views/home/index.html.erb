@@ -1,3 +1,6 @@
+<% title = "Home" %>
+<% set_head(title) %>
+
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
 <% unless @often_used.blank? %>
@@ -34,7 +37,7 @@
 <% else %>
   <div id="tutorial">
     <p>
-      'Guess this is your first time around here. Don't worry, <strong>6lock is as simple as it looks</strong>.<br>
+      'Guess this is your first time around here. Don't worry, <strong>6LOCK is as simple as it looks</strong>.<br>
       Now, try to create a new folder by clicking on the "+" on the left of your screen.<br>
       Then create a file in it with the dedicated column on the right of the brand new folder.<br>
       Finally click on the file and click edit, fill in the informations for your secured file and you are done.<br>
