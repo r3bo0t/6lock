@@ -4,7 +4,7 @@
     <p>Never forget a password anymore</p>
   </div>
   <ul>
-    <% %w(who_is_it_for features).each do |action| %>
+    <% %w(who_is_it_for features security).each do |action| %>
       <%= content_tag :li, :id => ("current_action" if action == controller.action_name) do %>
         <%= link_to action.humanize.upcase, if action == 'who_is_it_for' then root_path else send("#{action}_path") end %>
       <% end %>

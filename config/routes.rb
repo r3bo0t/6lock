@@ -17,5 +17,6 @@ Sixlock::Application.routes.draw do
 
   match 'who-is-it-for' => 'sixlock#who_is_it_for', :as => :who_is_it_for, :via => :get
   match 'features' => 'sixlock#features', :as => :features, :via => :get
+  match 'security' => 'sixlock#security', :as => :security, :via => :get
   match 'user-agreement' => 'sixlock#user_agreement', :as => :user_agreement, :via => :get
 end
