@@ -30,6 +30,7 @@ header {
   left: 251px;
   width: 250px;
   z-index: 1;
+  height: 100%;
 }
 
 #main_nav {
@@ -126,9 +127,14 @@ header {
   border: 1px solid #155494;
 }
 
-#bottom {
-  position: absolute;
-  bottom: 0;
+#folders_block {
+  height: calc(100% - 363px);
+  overflow-y: auto;
+}
+
+.files_block {
+  height: calc(100% - 35px);
+  overflow-y: auto;
 }
 
 #folder_name, .record_name {
@@ -197,14 +203,4 @@ header {
   width: 100%;
   padding-left: 8px;
   border: 2px solid #ccc;
-}
-
-.wrapper {
-  height: 392px;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-.files_nav + .wrapper {
-  height: 605px;
 }

@@ -20,6 +20,7 @@
 @import "sixlock";
 @import "menu";
 @import "who_is_it_for";
+@import "chosen";
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -31,6 +32,10 @@
 
 html, body {
   height: 100%;
+}
+
+body {
+  overflow: hidden;
 }
 
 img {
@@ -48,6 +53,20 @@ img {
 
 .clear_both {
   clear: both;
+}
+
+#left_bar {
+  .chzn-container {
+    margin-top: 3px;
+    a {
+      font-size: 13px;
+      width: 210px;
+    }
+    li {
+      padding: 5px 6px!important;
+      height: auto!important;
+    }
+  }
 }
 
 h1 {

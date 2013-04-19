@@ -12,14 +12,16 @@
                   <% end %>\
                 </li>\
               </ul>\
-              <ul class="elements_nav wrapper">\
-              </ul>\
+              <div class="files_block">\
+                <ul class="elements_nav wrapper">\
+                </ul>\
+              </div>\
             </div>'
   $(function() {
     $('#folder_name').val('')
     $('#add_folder_form').slideUp('fast')
     $('#right_bar').after(bar)
-    $('#add_folder_form').parent().next('.wrapper').prepend(content)
+    $('#add_folder_form').parent().next().find('.wrapper').prepend(content)
     //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
