@@ -129,11 +129,13 @@ header {
 #folders_block {
   height: calc(100% - 363px);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .files_block {
   height: calc(100% - 35px);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #folder_name, .record_name {
