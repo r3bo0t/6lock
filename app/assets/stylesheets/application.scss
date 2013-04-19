@@ -21,6 +21,8 @@
 @import "menu";
 @import "who_is_it_for";
 @import "chosen";
+@import "jquery.jscrollpane";
+@import "jquery.jscrollpane.custom";
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -40,6 +42,16 @@ body {
 
 img {
   border: none;
+}
+
+input[type=text], textarea {
+  @include transition(all 0.30s ease-in-out);
+  outline: none;
+}
+
+input[type=text]:focus, textarea:focus {
+  @include box-shadow(0 0 5px rgba(81, 203, 238, 1));
+  border: 1px solid rgba(81, 203, 238, 1);
 }
 
 .sixlock {

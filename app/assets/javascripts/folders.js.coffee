@@ -35,3 +35,17 @@ $ ->
   $('#current_record').on 'click', '.edit_element', ->
     $(this).prev().prev().hide()
     $(this).prev('.rename_element').show()
+
+  # Custom scrollbars
+  $(".fancy_scroll").jScrollPane
+    horizontalGutter: 5
+    verticalGutter: 5
+    showArrows: false
+
+  $(".jspDrag").hide()
+
+  $(".jspScrollable").mouseenter ->
+    $(this).find(".jspDrag").stop(true, true).fadeIn "slow"
+
+  $(".jspScrollable").mouseleave ->
+    $(this).find(".jspDrag").stop(true, true).fadeOut "slow"
