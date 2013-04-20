@@ -1,27 +1,9 @@
 <% if @folder.valid? %>
-  var content = '<li class="folder_link element_link"><%= link_to image_tag('cross.png', :alt => 'delete'), @folder, :data => { :confirm => 'Are you sure?' }, :method => :delete, :remote => true, :class => 'delete_element' %>\
-                <a href="#" id="link_<%= @folder.id %>" class="show_folder"><%= @folder.name %></a><%= form_for @folder, :remote => true, :html => { :class => "rename_element" } do |f| %>\
-                <%= f.text_field :name, :size => '20', :id => "" %><%= f.submit 'OK', :class => "edit_element_submit" %><% end %><input class="edit_element" type="button"></li>'
-  var bar = '<div id="folder_<%= @folder.id %>" class="files_bar new_files_bar">\
-              <ul class="files_nav elements_nav">\
-                <li class="add_element add_file"><a href="#">+</a></li>\
-                <li class="add_element_form add_file_form">\
-                  <%= form_for @record, :remote => true do |f| %>\
-                    <%= hidden_field_tag 'folder_id', @folder.id, :id => nil, :class => 'folder_id' %>\
-                    <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %><%= f.submit 'OK', :class => "new_element_submit" %>\
-                  <% end %>\
-                </li>\
-              </ul>\
-              <div class="files_block" class="fancy_scroll">\
-                <ul class="elements_nav wrapper">\
-                </ul>\
-              </div>\
-            </div>'
   $(function() {
     $('#folder_name').val('')
     $('#add_folder_form').slideUp('fast')
-    $('#right_bar').after(bar)
-    $('#add_folder_form').parent().next().find('.wrapper').prepend(content)
+    $('#right_bar').after('<%= escape_javascript(render("shared/folder_content_bar", :folder => @folder, :record => @record)) %>');
+    $('#add_folder_form').parent().next().find('.wrapper').prepend('<%= escape_javascript(render("shared/folder_list_item", :folder => @folder, :current_folder => nil)) %>');
     //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')

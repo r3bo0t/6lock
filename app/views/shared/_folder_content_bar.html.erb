@@ -1,0 +1,15 @@
+<div id="folder_<%= folder.id %>" class="files_bar new_files_bar">
+  <ul class="files_nav elements_nav">
+    <li class="add_element add_file"><a href="#">+</a></li>
+    <li class="add_element_form add_file_form">
+      <%= form_for record, :remote => true do |f| %>
+        <%= hidden_field_tag 'folder_id', folder.id, :id => nil, :class => 'folder_id' %>
+        <%= f.text_field :name, :size => '25', :id => nil, :class => 'record_name' %><%= f.submit 'OK', :class => "new_element_submit" %>
+      <% end %>
+    </li>
+  </ul>
+  <div class="files_block" class="fancy_scroll">
+    <ul class="elements_nav wrapper">
+    </ul>
+  </div>
+</div>
