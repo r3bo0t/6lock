@@ -3,12 +3,10 @@ class RecordsController < ApplicationController
   before_filter :prepare_folders_and_records
 
   def show
-    @folders = current_user.folders
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
       @current_record.set_decrypted_password(session[:master])
       @current_folder = @current_record.folder
-      @current_record.update_attribute('access_count', @current_record.access_count + 1)
     else
       flash[:alert] = "You are not allowed to access this resource."
       redirect_to home_path
@@ -45,10 +43,7 @@ class RecordsController < ApplicationController
         if params[:current_record]
           next_folder = Folder.where(:id => params[:current_record][:folder_id], :user_id => current_user.id).first
           if next_folder && next_folder != folder
-            new_record = @record.dup
-            next_folder.records << new_record
-            @record.destroy
-            @record = new_record
+            @record = @record.move_to_folder(next_folder, session[:master])
           end
         end
 
@@ -77,8 +72,6 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @folders = current_user.folders
-    @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
       @current_record.set_decrypted_password(session[:master])
@@ -90,7 +83,7 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    @record = Record.get_record_from(Folder.all, params[:id])
+    @record = Record.get_record_from(@folders, params[:id])
     @record.destroy if @record.folder.user_id == current_user.id
 
     respond_to do |format|
@@ -99,10 +92,35 @@ class RecordsController < ApplicationController
   end
 
   def export
-    records = Record.extract_records_from(current_user.folders).sort_by(&:name)
+    records = Record.extract_records_from(@folders).sort_by(&:name)
     records.each {|r| r.set_decrypted_password(session[:master]) }
     respond_to do |format|
       format.csv { send_data Record.to_csv(records), :filename => '6lock_records.csv' }
     end
+  end
+
+  def delete_favorite
+    record = Record.get_record_from(@folders, params[:id])
+    if record
+      record.update_attribute(:position, nil)
+    else
+      flash[:alert] = "You are not allowed to access this resource."
+    end
+    redirect_to home_path
+  end
+
+  def set_favorite
+    record_id = params[:favorite].first.last
+    position = params[:favorite].first.first
+    records = Record.extract_records_from(@folders)
+    record = records.select {|r| r.id.to_s == record_id }.first
+    if record
+      old = records.select {|r| r.position == position.to_i }.first
+      if old then old.update_attribute(:position, nil) end
+      record.update_attribute(:position, position)
+    else
+      flash[:alert] = "You are not allowed to access this resource."
+    end
+    redirect_to home_path
   end
 end

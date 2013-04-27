@@ -15,7 +15,6 @@ class Record
   field :password, :type => String, :default => ""
   field :url, :type => String, :default => ""
   field :notes, :type => String, :default => ""
-  field :access_count, :type => Integer, :default => 0
   field :position, :type => Integer, :default => nil
 
   validates :name, :presence => true, :length => { :maximum => 23 }
@@ -58,15 +57,22 @@ class Record
     self.folder.id
   end
 
+  def move_to_folder(folder, master)
+    pass = set_decrypted_password(master)
+    new_record = dup
+    destroy
+    new_record.tap do |new_r|
+      folder.records << new_r
+      new_r.decrypted_password = pass
+      new_r.set_password(master)
+      new_r.save
+    end
+  end
+
   class << self
     def often_used(folders, master)
       records = extract_records_from(folders)
-      favorites = records.select(&:position).sort_by(&:position) || []
-      most_accessed = records.sort_by(&:access_count).reverse
-      records = [0, 1, 2].map do |i|
-        favorites.select {|r| r.position == i + 1 }.first || most_accessed[i]
-      end
-      records.compact.each {|r| r.set_decrypted_password(master) }
+      records.select(&:position).sort_by(&:position).each {|r| r.set_decrypted_password(master) }
     end
 
     def get_record_from(folders, record_id)

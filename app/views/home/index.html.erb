@@ -3,12 +3,14 @@
 
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
-<% unless @often_used.blank? %>
-  <p id="often_used">Often used - <a id="edit_favorites" href="#">Edit</a></p>
-  <% @often_used.each_with_index do |record, i| %>
-    <div class="change_favorite">
+<p id="often_used">Favorites - <a id="edit_favorites" href="#">Edit</a></p>
+<% [0, 1, 2].each do |i| %>
+  <div class="change_favorite">
+    <%= form_tag set_favorite_records_path do %>
       <%= collection_select(:favorite, i, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Change" }) %>
-    </div>
+    <% end %>
+  </div>
+  <% if record = @favorites.select {|r| r.position == i }.first %>
     <div class="often_used favorite">
       <div class="name">
         <p>
@@ -35,21 +37,9 @@
         </p>
       </div>
       <%= link_to '<div class="link"></div>'.html_safe, record %>
-      <%= link_to '<div class="delete_favorite"></div>'.html_safe, record, :class => 'delete_favorite_link' %>
+      <%= link_to '<div class="delete_favorite"></div>'.html_safe, delete_favorite_record_path(record), :class => 'delete_favorite_link' %>
     </div>
+  <% else %>
+    <%= render 'blank_favorite' %>
   <% end %>
-  <% tms = 3 - @often_used.size %>
-  <% tms.times do |i| %>
-    <%= render 'blank_favorite', :position => [0, 1, 2][-(tms-i)] %>
-  <% end %>
-<% else %>
-  <div id="tutorial">
-    <p>
-      'Guess this is your first time around here. Don't worry, <strong>6LOCK is as simple as it looks</strong>.<br>
-      Now, try to create a new folder by clicking on the "+" on the left of your screen.<br>
-      Then create a file in it with the dedicated column on the right of the brand new folder.<br>
-      Finally click on the file and click edit, fill in the informations for your secured file and you are done.<br>
-      'See? Simple as it looks. : )
-    </p>
-  </div>
 <% end %>

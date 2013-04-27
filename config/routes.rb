@@ -8,6 +8,10 @@ Sixlock::Application.routes.draw do
   resources :records, :except => [:index, :new] do
     collection do
       get 'export', :defaults => { :format => 'csv' }
+      post 'set_favorite'
+    end
+    member do
+      get 'delete_favorite'
     end
   end
 
