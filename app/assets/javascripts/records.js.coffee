@@ -5,33 +5,29 @@
 $ ->
   $('select').chosen()
   # Shows or hides password
-  $('.toggle').click(
-    ->
+  $('.toggle').click ->
       $(this).prevAll('.info_password').toggle() if ($('.info_password') != undefined)
       $(this).prevAll('.decrypted_password').toggle() if ($('.decrypted_password') != undefined)
-  )
+
   # Fills both password fields
-  $('.decrypted_password').keyup(
-    -> $('.decrypted_password').val($(this).val())
-  )
+  $('.decrypted_password').keyup ->
+    $('.decrypted_password').val($(this).val())
+
   # Forge button
-  $('#forge').click(
-    ->
+  $('#forge').click ->
       top = ($(window).height - $('#overlay_box').height) / 2
       left = ($(window).width - $('#overlay_box').width) / 2
       $('#overlay_box').css({top:top, left:left})
       $('#overlay').show()
       $('#overlay_box').show()
-  )
+
   # Cancel forge
-  $('#cancel_forge').click(
-    ->
+  $('#cancel_forge').click ->
       $('#overlay').hide()
       $('#overlay_box').hide()
-  )
+
   # Forge a password
-  $('#generate').click(
-    ->
+  $('#generate').click ->
       characters_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
       numbers_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
       specials_list = ['#', '{', '(', '[', '-', '_', '\\', '@', ')', ']', '=', '}', '+', '*', '/', '.', ',', ';', '?', '!', '$']
@@ -56,15 +52,13 @@ $ ->
           alert('There must be characters, numbers or specials')
       else
         alert('The length must be between 1 and 100')
-  )
-  $('#forge_button').click(
-    ->
+
+  $('#forge_button').click ->
       $('#password_value').val($('#generated').val())
       $('.decrypted_password').val($('#generated').val())
       $('#overlay').hide()
       $('#overlay_box').hide()
-  )
+
   # Quick access
-  $('#quick_access').change(
-    -> location.href = 'http://localhost:3000/records/' + $(this).val()
-  )
+  $('#quick_access').change ->
+    location.href = 'http://localhost:3000/records/' + $(this).val()

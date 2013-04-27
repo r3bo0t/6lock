@@ -144,16 +144,6 @@ strong {
   padding: 25px 0 0 40px;
 }
 
-#tutorial {
-  margin: 20px 50px 0 0;
-  p {
-    padding-left: 15px;
-    color: $dark_text;
-    line-height: 40px;
-    border-left: 2px solid $green_triad;
-  }
-}
-
 #unlocking {
   text-align: center;
   h1 {
@@ -168,6 +158,9 @@ strong {
       cursor: pointer;
       width: 52px;
       height: 42px;
+    }
+    &:focus {
+      border: 2px solid rgba(81, 203, 238, 1);
     }
   }
   p {
