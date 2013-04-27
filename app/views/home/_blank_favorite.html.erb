@@ -1,0 +1,10 @@
+<div class="change_favorite">
+  <%= collection_select(:favorite, position, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Change" }) %>
+</div>
+<div class="often_used blank_favorite">
+  <div class="name"></div>
+  <div class="data"></div>
+  <div class="edit_favorite">
+    <div class="change_favorite"></div>
+  </div>
+</div>

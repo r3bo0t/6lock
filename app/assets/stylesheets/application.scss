@@ -37,19 +37,19 @@ html, body {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 img {
   border: none;
 }
 
-input[type=text], textarea {
+input[type=text], input[type=email], input[type=password], textarea {
   @include transition(all 0.30s ease-in-out);
   outline: none;
 }
 
-input[type=text]:focus, textarea:focus {
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, textarea:focus {
   @include box-shadow(0 0 5px rgba(81, 203, 238, 1));
   border: 1px solid rgba(81, 203, 238, 1);
 }

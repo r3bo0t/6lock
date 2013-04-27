@@ -16,6 +16,7 @@ class Record
   field :url, :type => String, :default => ""
   field :notes, :type => String, :default => ""
   field :access_count, :type => Integer, :default => 0
+  field :position, :type => Integer, :default => nil
 
   validates :name, :presence => true, :length => { :maximum => 23 }
   validates :username, :length => { :maximum => 100, :too_long => 'username is too long (> 100)' }
@@ -59,9 +60,13 @@ class Record
 
   class << self
     def often_used(folders, master)
-      records = extract_records_from(folders).sort_by(&:access_count).reverse
-      return records[0..2].each {|r| r.set_decrypted_password(master) } if records.length > 3
-      records.each {|r| r.set_decrypted_password(master) }
+      records = extract_records_from(folders)
+      favorites = records.select(&:position).sort_by(&:position) || []
+      most_accessed = records.sort_by(&:access_count).reverse
+      records = [0, 1, 2].map do |i|
+        favorites.select {|r| r.position == i + 1 }.first || most_accessed[i]
+      end
+      records.compact.each {|r| r.set_decrypted_password(master) }
     end
 
     def get_record_from(folders, record_id)

@@ -4,9 +4,12 @@
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
 <% unless @often_used.blank? %>
-  <p id="often_used">Often used</p>
-  <% @often_used.each do |record| %>
-    <div class="often_used">
+  <p id="often_used">Often used - <a id="edit_favorites" href="#">Edit</a></p>
+  <% @often_used.each_with_index do |record, i| %>
+    <div class="change_favorite">
+      <%= collection_select(:favorite, i, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Change" }) %>
+    </div>
+    <div class="often_used favorite">
       <div class="name">
         <p>
           <%= record.name %>
@@ -32,7 +35,12 @@
         </p>
       </div>
       <%= link_to '<div class="link"></div>'.html_safe, record %>
+      <%= link_to '<div class="delete_favorite"></div>'.html_safe, record, :class => 'delete_favorite_link' %>
     </div>
+  <% end %>
+  <% tms = 3 - @often_used.size %>
+  <% tms.times do |i| %>
+    <%= render 'blank_favorite', :position => [0, 1, 2][-(tms-i)] %>
   <% end %>
 <% else %>
   <div id="tutorial">

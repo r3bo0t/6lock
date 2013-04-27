@@ -4,7 +4,6 @@ class RecordsController < ApplicationController
 
   def show
     @folders = current_user.folders
-    @record = Record.new
     @current_record = Record.get_record_from(@folders, params[:id])
     if @current_record
       @current_record.set_decrypted_password(session[:master])

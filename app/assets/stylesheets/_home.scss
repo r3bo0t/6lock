@@ -16,6 +16,7 @@
   overflow: hidden;
   background: #f3f3f3;
   color: $dark_text;
+  position: relative;
   .name {
     float: left;
     width: 160px;
@@ -52,4 +53,27 @@
     display: table-cell;
     vertical-align: middle;
   }
+  .delete_favorite {
+    display: none;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background: url(trash_can.png) no-repeat center center $red_triad;;
+    width: 70px;
+    height: 100%;
+  }
+}
+
+.change_favorite {
+  display: none;
+  text-align: right;
+  margin: 20px 50px 0 0;
+  select {
+    width: 200px;
+  }
+}
+
+#edit_favorites {
+  color: $electric_blue;
+  text-decoration: underline;
 }
