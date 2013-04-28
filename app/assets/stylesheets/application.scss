@@ -173,6 +173,7 @@ strong {
   .sign_x {
     display: inline-block;
     padding: 10px 15px;
+    margin-top: 10px;
     border: 2px solid darken($green_triad, 10%);
     background: $green_triad;
     width: 344px;
@@ -195,10 +196,13 @@ strong {
   #user_remember_me {
     border: none;
   }
-  #sign_up_fields input {
+  #sign_up_fields input, #reset_password_fields input {
     width: 344px;
   }
-  #sign_up_button {
+  #reset_password_fields {
+    padding-bottom: 10px;
+  }
+  #sign_up_button, #reset_password_button {
     @extend .sign_x;
     border: 2px solid darken($electric_blue, 20%);
     background: $electric_blue;
