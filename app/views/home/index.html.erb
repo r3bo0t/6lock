@@ -32,11 +32,11 @@
             </span>
           </span>
           <span class="row">
-            <span class="cell"><%= link_to record.url, record.url, :target => '_blank' %></span>
+            <span class="cell"><%= link_to record.url, URI::escape(record.url), :target => '_blank' %></span>
           </span>
         </p>
       </div>
-      <%= link_to '<div class="link"></div>'.html_safe, record %>
+      <%= link_to '<div class="link"></div>'.html_safe, record_path(record) %>
       <%= link_to '<div class="delete_favorite"></div>'.html_safe, delete_favorite_record_path(record), :class => 'delete_favorite_link' %>
     </div>
   <% else %>
