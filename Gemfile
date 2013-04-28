@@ -13,7 +13,6 @@ gem 'rails_admin', '= 0.3.0'
 gem 'jquery-rails'
 gem 'mongoid', '~> 3.0.1'
 gem 'devise', '= 2.1.2'
-gem 'jquery-rails-cdn', '~> 0.4.0'
 
 group :development do
   gem 'genghisapp', '~> 2.1.6'
