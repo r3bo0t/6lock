@@ -1,6 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :prepare_folders_and_records, :only => [:edit, :update]
 
+  def create
+    session[:master] = params[:user][:password]
+    super
+  end
+
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
 
@@ -13,7 +18,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       sign_in resource_name, resource, :bypass => true
       if params[:user] && params[:user][:password]
-        records = Record.extract_records_from(current_user.folders)
+        records = Record.extract_records_from(@folders)
         records.each do |record|
           record.set_decrypted_password(session[:master])
           record.set_password(params[:user][:password])

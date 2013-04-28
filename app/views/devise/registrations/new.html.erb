@@ -43,6 +43,8 @@
     </p>
   </div>
 
+  <p><%= check_box_tag :agreement %> I have read and agree with the terms defined by the <%= link_to "user agreement", user_agreement_path, :class => 'sixlock' %></p>
+
   <p><%= f.submit "Sign up", :id => "sign_up_button" %></p>
 <% end %>
 

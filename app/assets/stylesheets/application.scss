@@ -51,7 +51,11 @@ input[type=text], input[type=email], input[type=password], textarea {
 
 input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, textarea:focus {
   @include box-shadow(0 0 5px rgba(81, 203, 238, 1));
-  border: 1px solid rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1)!important;
+}
+
+input, textarea {
+  color: #000;
 }
 
 .sixlock {
