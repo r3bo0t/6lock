@@ -1,16 +1,11 @@
 class RecordsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :prepare_folders_and_records
+  around_filter :check_record_owner_wrapper, :only => [:show, :edit, :delete_favorite]
 
   def show
-    @current_record = Record.get_record_from(@folders, params[:id])
-    if @current_record
-      @current_record.set_decrypted_password(session[:master])
-      @current_folder = @current_record.folder
-    else
-      flash[:alert] = "You are not allowed to access this resource."
-      redirect_to home_path
-    end
+    @current_record.set_decrypted_password(session[:master])
+    @current_folder = @current_record.folder
   end
 
   def create
@@ -72,14 +67,8 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @current_record = Record.get_record_from(@folders, params[:id])
-    if @current_record
-      @current_record.set_decrypted_password(session[:master])
-      @current_folder = @current_record.folder
-    else
-      flash[:alert] = "You are not allowed to access this resource."
-      redirect_to home_path
-    end
+    @current_record.set_decrypted_password(session[:master])
+    @current_folder = @current_record.folder
   end
 
   def destroy
@@ -100,12 +89,7 @@ class RecordsController < ApplicationController
   end
 
   def delete_favorite
-    record = Record.get_record_from(@folders, params[:id])
-    if record
-      record.update_attribute(:position, nil)
-    else
-      flash[:alert] = "You are not allowed to access this resource."
-    end
+    @current_record.update_attribute(:position, nil)
     redirect_to home_path
   end
 
@@ -123,4 +107,16 @@ class RecordsController < ApplicationController
     end
     redirect_to home_path
   end
+
+  private
+
+    def check_record_owner_wrapper
+      @current_record = Record.get_record_from(@folders, params[:id])
+      if @current_record
+        yield
+      else
+        flash[:alert] = "You are not allowed to access this resource."
+        redirect_to home_path
+      end
+    end
 end
