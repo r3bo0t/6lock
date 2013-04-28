@@ -9,11 +9,7 @@
   <div class="clear_right"></div>
 
   <p class="input_error_text">
-    <% if resource.errors.messages[:current_password] %>
-      <% resource.errors.messages[:current_password].each do |message| %>
-        <span class="input_error_message"><%= message %></span><br>
-      <% end %>
-    <% end %>
+    <%= render "devise/shared/errors", :field => :current_password %>
   </p>
   <div class="account_info">
     <div class="info_title">
@@ -25,43 +21,31 @@
   </div>
 
   <p class="input_error_text">
-    <% if resource.errors.messages[:name] %>
-      <% resource.errors.messages[:name].each do |message| %>
-        <span class="input_error_message"><%= message %></span><br>
-      <% end %>
-    <% end %>
+    <%= render "devise/shared/errors", :field => :name %>
   </p>
   <div class="account_info">
     <div class="info_title">
       <p>Name</p>
     </div>
     <div class="info_content">
-      <p><%= f.text_field :name %></p>
+      <p><%= f.text_field :name, :class => ("field_with_errors" if resource.errors.messages[:name]) %></p>
     </div>
   </div>
 
   <p class="input_error_text">
-    <% if resource.errors.messages[:email] %>
-      <% resource.errors.messages[:email].each do |message| %>
-        <span class="input_error_message"><%= message %></span><br>
-      <% end %>
-    <% end %>
+    <%= render "devise/shared/errors", :field => :email %>
   </p>
   <div class="account_info">
     <div class="info_title">
       <p>E-mail</p>
     </div>
     <div class="info_content">
-      <p><%= f.email_field :email %></p>
+      <p><%= f.email_field :email, :class => ("field_with_errors" if resource.errors.messages[:email]) %></p>
     </div>
   </div>
 
   <p class="input_error_text">
-    <% if resource.errors.messages[:password] %>
-      <% resource.errors.messages[:password].each do |message| %>
-        <span class="input_error_message"><%= message %></span><br>
-      <% end %>
-    <% end %>
+    <%= render "devise/shared/errors", :field => :password %>
   </p>
   <div class="account_info">
     <div class="info_title">
@@ -73,11 +57,7 @@
   </div>
 
   <p class="input_error_text">
-    <% if resource.errors.messages[:password_confirmation] %>
-      <% resource.errors.messages[:password_confirmation].each do |message| %>
-        <span class="input_error_message"><%= message %></span><br>
-      <% end %>
-    <% end %>
+    <%= render "devise/shared/errors", :field => :password_confirmation %>
   </p>
   <div class="account_info">
     <div class="info_title">

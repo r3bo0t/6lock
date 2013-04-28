@@ -1,0 +1,5 @@
+<% if resource.errors.messages[field] %>
+  <% resource.errors.messages[field].each do |message| %>
+    <span class="input_error_message"><%= message %></span><br>
+  <% end %>
+<% end %>
