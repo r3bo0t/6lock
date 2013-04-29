@@ -1,16 +1,25 @@
 <h2>Change your password</h2>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password %></div>
+  <p id="warning">
+    If you reset your password we will not be able to decrypt any of your stored passwords, but the rest of your files will still be there.<br>
+    THERE IS NO COMING BACK AFTER THIS STEP.
+  </p>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div id="reset_password_fields">
+    <p>
+      <%= render "devise/shared/errors", :field => :password %>
+      <%= f.password_field :password, :placeholder => "New password", :class => ("field_with_errors" if resource.errors.messages[:password]) %>
+    </p>
+    <p>
+      <%= render "devise/shared/errors", :field => :password_confirmation %>
+      <%= f.password_field :password_confirmation, :placeholder => "Confirm new password", :class => ("field_with_errors" if resource.errors.messages[:password_confirmation]) %>
+    </p>
+  </div>
 
-  <div><%= f.submit "Change my password" %></div>
+  <p><%= f.submit "Change my password", :id => "reset_password_button" %></p>
 <% end %>
 
 <%= render "devise/shared/links" %>

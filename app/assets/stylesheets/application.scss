@@ -199,10 +199,10 @@ strong {
   #user_remember_me {
     border: none;
   }
-  #sign_up_fields input, #reset_password_fields input {
+  #sign_up_fields input, #reset_password_fields input, #reset_password_field input {
     width: 344px;
   }
-  #reset_password_fields {
+  #reset_password_field {
     padding-bottom: 10px;
   }
   #sign_up_button, #reset_password_button {
@@ -214,6 +214,9 @@ strong {
     width: 378px;
     height: 46px;
     font-size: 1em;
+  }
+  #warning {
+    color: $red_triad;
   }
 }
 #wrong_place {

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def layout_by_resource
-      if devise_controller? && resource_name == :user && %w(new create).include?(action_name)
+      if devise_controller? && resource_name == :user && (%w(new create).include?(action_name) || (controller_name == 'passwords' && %w(edit update).include?(action_name) ))
         "unlocking"
       else
         "application"

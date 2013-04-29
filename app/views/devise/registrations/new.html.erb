@@ -5,6 +5,9 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+  <p id="warning">If you forget your password, we will never be able to get it back for you and you would lose all your stored passwords forever.<br>For real.</p>
+
   <div id="sign_up_fields">
     <p>
       <%= render "devise/shared/errors", :field => :name %>

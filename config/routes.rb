@@ -3,7 +3,7 @@ Sixlock::Application.routes.draw do
 
   root :to => 'sixlock#who_is_it_for'
 
-  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions", :passwords => "passwords" }
 
   resources :records, :except => [:index, :new] do
     collection do
