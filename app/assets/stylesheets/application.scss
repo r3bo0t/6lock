@@ -185,7 +185,7 @@ strong {
   #shared_links {
     margin-top: 50px;
   }
-  #forgot_password {
+  #forgot_password, #confirmation_instructions {
     @extend .sign_x;
     border: 2px solid darken($red_triad, 20%);
     background: $red_triad;
@@ -199,13 +199,13 @@ strong {
   #user_remember_me {
     border: none;
   }
-  #sign_up_fields input, #reset_password_fields input, #reset_password_field input {
+  #sign_up_fields input, #reset_password_fields input, #reset_password_field input, #confirmation_instructions_field input {
     width: 344px;
   }
-  #reset_password_field {
+  #reset_password_field, #confirmation_instructions_field {
     padding-bottom: 10px;
   }
-  #sign_up_button, #reset_password_button {
+  #sign_up_button, #reset_password_button, #confirmation_instructions_button {
     @extend .sign_x;
     border: 2px solid darken($electric_blue, 20%);
     background: $electric_blue;
