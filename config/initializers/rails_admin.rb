@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
 
   config.authorize_with do
     authenticate_or_request_with_http_basic('Biohazard zone') do |username, password|
-      username == 'ImThe6lockMaster' && password == 'You_2377ShallN0t_5914Pass+F3arMyWratH'
+      username == ENV["ADMIN_USERNAME"] && password == ENV["ADMIN_PASSWORD"]
     end
   end
 
