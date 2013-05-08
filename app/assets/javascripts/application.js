@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require chosen.jquery.min
+//= require jquery.jscrollpane.min
+//= require jquery.mousewheel.min
 //= require_tree .

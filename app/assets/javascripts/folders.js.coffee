@@ -14,10 +14,11 @@ $ ->
 
   # Slides the element creation forms up and down
   $('header').on 'click', '.add_file a, #add_folder a', ->
-    if $(this).parent().next().css('display') == 'list-item'
-      $(this).parent().next().slideUp('fast')
+    li = $(this).parent().next()
+    if $(li).css('display') == 'list-item'
+      $(li).slideUp('fast')
     else
-      $(this).parent().next().slideDown('fast')
+      $(li).slideDown('fast')
 
   # Shows the selected files bar
   $('.elements_nav').on 'click', '.show_folder', ->

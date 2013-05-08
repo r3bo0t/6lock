@@ -4,7 +4,7 @@
 <h1>Welcome<%= ", #{current_user.name}" if current_user.name %></h1>
 
 <p id="often_used">Favorites - <a id="edit_favorites" href="#">Edit</a></p>
-<% [0, 1, 2].each do |i| %>
+<% (0..2).each do |i| %>
   <div class="change_favorite">
     <%= form_tag set_favorite_records_path do %>
       <%= collection_select(:favorite, i, @folders.map {|f| f.records }.flatten.sort_by(&:name), :id, :name, { :prompt => "Change" }) %>

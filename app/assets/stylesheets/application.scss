@@ -9,6 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require chosen
+ *= require jquery.jscrollpane.custom
+ *= require jquery.jscrollpane
 */
 
 @import "base";
@@ -20,9 +23,6 @@
 @import "sixlock";
 @import "menu";
 @import "who_is_it_for";
-@import "chosen";
-@import "jquery.jscrollpane";
-@import "jquery.jscrollpane.custom";
 
 * {
   font-family: 'Open Sans', sans-serif;

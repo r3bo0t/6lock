@@ -34,9 +34,9 @@ $ ->
       generated = ''
       array = []
       length = $('#length').val()
-      characters = $('#characters').is(':checked')
-      numbers = $('#numbers').is(':checked')
-      specials = $('#specials').is(':checked')
+      characters = $('#characters').is ':checked'
+      numbers = $('#numbers').is ':checked'
+      specials = $('#specials').is ':checked'
       if length > 0 && length < 101
         if characters || numbers || specials
           array.push(characters_list) if characters
@@ -61,4 +61,4 @@ $ ->
 
   # Quick access
   $('#quick_access').change ->
-    location.href = 'http://localhost:3000/records/' + $(this).val()
+    location.href = 'http://' + location.hostname + ':' + location.port + '/records/' + $(this).val()

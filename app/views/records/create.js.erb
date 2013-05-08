@@ -6,6 +6,7 @@
     form = $('#folder_<%= @folder.id %> .add_file_form')
     form.slideUp('fast')
     form.parent().next().find('.wrapper').prepend(content)
+
     //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
@@ -14,6 +15,7 @@
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
         $('a:first-child', this).css('display', 'none')
     })
+
     $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
     })

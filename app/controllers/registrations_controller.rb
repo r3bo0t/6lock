@@ -17,6 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, flash_key || :updated
       end
       sign_in resource_name, resource, :bypass => true
+
       if params[:user] && params[:user][:password]
         records = Record.extract_records_from(@folders)
         records.each do |record|
@@ -26,6 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
         session[:master] = params[:user][:password]
       end
+
       respond_with resource, :location => after_update_path_for(resource)
     else
       clean_up_passwords resource

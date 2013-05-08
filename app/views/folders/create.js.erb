@@ -4,6 +4,7 @@
     $('#add_folder_form').slideUp('fast')
     $('#right_bar').after('<%= escape_javascript(render("shared/folder_content_bar", :folder => @folder, :record => @record)) %>');
     $('#add_folder_form').parent().next().find('.wrapper').prepend('<%= escape_javascript(render("shared/folder_list_item", :folder => @folder, :current_folder => nil)) %>');
+
     //---------------- Shows and hides the cross
     $('.elements_nav .element_link').hover(function() {
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
@@ -12,6 +13,7 @@
       if ($(this).attr('id') != 'current_folder' && $(this).attr('id') != 'current_record')
         $('a:first-child', this).css('display', 'none')
     })
+
     $('.delete_element').bind('ajax:success', function() {
       $(this).parent().remove()
     })
