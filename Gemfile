@@ -19,3 +19,15 @@ group :development do
   gem 'bson_ext', '~> 1.7.1'
   gem 'brakeman', '~> 1.8.3'
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.13'
+  gem 'guard-rspec', '~> 3.0.0'
+end
+
+group :test do
+  gem 'capybara', '~> 2.1.0'
+  gem 'rb-inotify', '~> 0.9.0'
+  gem 'libnotify', '~> 0.8.0'
+  gem 'database_cleaner', '~> 1.0.1'
+end
