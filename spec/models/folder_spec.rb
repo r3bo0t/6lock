@@ -18,12 +18,12 @@ describe Folder do
   it { should be_valid }
 
   context "when the associations are set up" do
-    it "should belong to a user" do
+    it "belongs to a user" do
       reflection = @folder.reflect_on_association(:user)
       expect(reflection.macro).to eq(:belongs_to)
     end
 
-    it "should embed many records" do
+    it "embeds many records" do
       reflection = @folder.reflect_on_association(:records)
       expect(reflection.macro).to eq(:embeds_many)
     end
@@ -52,7 +52,7 @@ describe Folder do
       Folder.new(name: 'z').save
     end
 
-    it "should order folders by ascending name" do
+    it "orders folders by ascending name" do
       expect(folders.first.name).to eq('a')
       expect(folders.last.name).to eq('z')
     end

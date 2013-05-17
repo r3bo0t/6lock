@@ -21,7 +21,7 @@ describe User do
 
   it { should be_valid }
 
-  it "should have many folders" do
+  it "has many folders" do
     reflection = @user.reflect_on_association(:folders)
     expect(reflection.macro).to eq(:has_many)
   end
@@ -58,13 +58,13 @@ describe User do
       @user.folders << Folder.new(name: 'my_folder')
     end
 
-    it "should be persisted" do
+    it "is persisted" do
       expect { @user.folders << Folder.new(name: 'my_folder') }.to change { Folder.count }.from(1).to(2)
     end
 
     context "when the user is destroyed" do
 
-      it "should destroy the associated folder" do
+      it "destroys the associated folder" do
         expect { @user.delete }.to change { Folder.count }.to(0)
       end
 
