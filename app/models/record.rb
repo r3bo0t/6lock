@@ -21,12 +21,10 @@ class Record
   validates :username, :length => { :maximum => 100, :too_long => 'username is too long (> 100)' }
   validates :decrypted_password, :length => { :maximum => 100, :too_long => 'password is too long (> 100)' }
   validates :url, :length => { :maximum => 100, :too_long => 'url is too long (> 100)' }
-  validates :notes, :length => { :maximum => 23, :too_long => 'notes are too long (> 255)' }
+  validates :notes, :length => { :maximum => 255, :too_long => 'notes are too long (> 255)' }
 
   attr_accessible :name, :username, :decrypted_password, :url, :notes, :created_at, :updated_at
   attr_accessor :decrypted_password
-
-  default_scope order_by(:name => :asc)
 
   def set_decrypted_password(master)
     unless self.password.blank?
