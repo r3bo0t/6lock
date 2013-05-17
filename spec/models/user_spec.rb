@@ -27,7 +27,6 @@ describe User do
   end
 
   context "when a validation is enforced" do
-
     context "when name is not present" do
       before { @user.name = nil }
 
@@ -51,7 +50,6 @@ describe User do
 
       it { should_not be_valid }
     end
-
   end
 
   context "when a folder is associated" do
