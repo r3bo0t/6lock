@@ -3,45 +3,31 @@ require 'spec_helper'
 describe Folder do
 
   before do
-    @folder = Folder.new(name: 'my_folder')
+    @folder = FactoryGirl.build(:folder)
   end
 
   subject { @folder }
 
   it { should respond_to(:name) }
 
+  it { should belong_to(:user) }
   it { should respond_to(:user) }
+
+  it { should embed_many(:records) }
   it { should respond_to(:records) }
 
   its(:name) { should eq('my_folder') }
 
+  it { should allow_mass_assignment_of(:name) }
+
+  it { should validate_presence_of(:name) }
+  it { should validate_length_of(:name).less_than(23) }
+
   it { should be_valid }
 
-  context "when the associations are set up" do
-    it "belongs to a user" do
-      reflection = @folder.reflect_on_association(:user)
-      expect(reflection.macro).to eq(:belongs_to)
-    end
+  it { should accept_nested_attributes_for(:records) }
 
-    it "embeds many records" do
-      reflection = @folder.reflect_on_association(:records)
-      expect(reflection.macro).to eq(:embeds_many)
-    end
-  end
-
-  context "when a validation is enforced" do
-    context "when name is not present" do
-      before { @folder.name = nil }
-
-      it { should_not be_valid }
-    end
-
-    context "when name is too long" do
-      before { @folder.name = 'x' * 24 }
-
-      it { should_not be_valid }
-    end
-  end
+  it { should have_index_for(name: 1, user_id: 1, 'records.name' => 1).with_options(background: true) }
 
   context "when multuple folders are saved and retrieved" do
     let(:folders) { Folder.all }

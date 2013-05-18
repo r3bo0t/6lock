@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Record do
 
   before do
-    @record = Record.new(name: 'Gmail', username: 'john.snow@example.com', url: 'http://mail.google.com', notes: 'Gmail is cool')
+    @record = FactoryGirl.build(:record)
   end
 
   subject { @record }
@@ -20,6 +20,7 @@ describe Record do
     its(:class) { should respond_to(class_method) }
   end
 
+  it { should be_embedded_in(:folder).as_inverse_of(:records) }
   it { should respond_to(:folder) }
 
   its(:name) { should eq('Gmail') }
@@ -27,54 +28,23 @@ describe Record do
   its(:url) { should eq('http://mail.google.com') }
   its(:notes) { should eq('Gmail is cool') }
 
+  it { should validate_presence_of(:name) }
+  it { should validate_length_of(:name).less_than(23) }
+
+  it { should validate_length_of(:username).less_than(100) }
+  it { should validate_length_of(:decrypted_password).less_than(100) }
+  it { should validate_length_of(:url).less_than(100) }
+  it { should validate_length_of(:notes).less_than(255) }
+
+  it { should allow_mass_assignment_of(:name) }
+  it { should allow_mass_assignment_of(:username) }
+  it { should allow_mass_assignment_of(:url) }
+  it { should allow_mass_assignment_of(:notes) }
+  it { should allow_mass_assignment_of(:decrypted_password) }
+
+  it { should_not allow_mass_assignment_of(:position) }
+
   it { should be_valid }
-
-  it "is embedded in a folder" do
-    reflection = @record.reflect_on_association(:folder)
-    expect(reflection.macro).to eq(:embedded_in)
-  end
-
-  context "when a validation is enforced" do
-    context "when name is not present" do
-      before { @record.name = nil }
-
-      it { should_not be_valid }
-    end
-
-    context "when name is too long" do
-      before { @record.name = 'x' * 24 }
-
-      it { should_not be_valid }
-    end
-
-    context "when username is too long" do
-      before { @record.username = 'x' * 101 }
-
-      it { should_not be_valid }
-    end
-
-    context "when decrypted_password is too long" do
-      before { @record.decrypted_password = 'x' * 101 }
-
-      it { should_not be_valid }
-    end
-
-    context "when url is too long" do
-      before { @record.url = 'x' * 101 }
-
-      it { should_not be_valid }
-    end
-
-    context "when notes are too long" do
-      before { @record.notes = 'x' * 256 }
-
-      it { should_not be_valid }
-    end
-  end
-
-  it "does not mass assigns position" do
-    expect(Record.accessible_attributes).not_to include('position')
-  end
 
   describe "#folder_id" do
     let(:folder) { Folder.new() }
