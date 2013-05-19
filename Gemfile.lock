@@ -139,6 +139,9 @@ GEM
     mime-types (1.23)
     mongo (1.7.1)
       bson (~> 1.7.1)
+    mongo_session_store-rails3 (4.0.0)
+      actionpack (>= 3.1)
+      mongo
     mongoid (3.0.23)
       activemodel (~> 3.1)
       moped (~> 1.2)
@@ -290,6 +293,7 @@ DEPENDENCIES
   guard-rspec (~> 3.0.0)
   jquery-rails
   libnotify (~> 0.8.0)
+  mongo_session_store-rails3 (~> 4.0.0)
   mongoid (~> 3.0.1)
   mongoid-rspec (~> 1.8.1)
   rails (= 3.2.11)

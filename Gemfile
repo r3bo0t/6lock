@@ -12,6 +12,7 @@ end
 gem 'rails_admin', '= 0.3.0'
 gem 'jquery-rails'
 gem 'mongoid', '~> 3.0.1'
+gem 'mongo_session_store-rails3', '~> 4.0.0'
 gem 'devise', '= 2.1.2'
 
 group :development do
