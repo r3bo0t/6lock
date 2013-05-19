@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = FactoryGirl.build(:user)
+    @user = FactoryGirl.build(:user, email: 'john.snow@example.com')
   end
 
   subject { @user }

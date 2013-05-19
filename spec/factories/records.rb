@@ -4,5 +4,6 @@ FactoryGirl.define do
     username 'john.snow@example.com'
     url 'http://mail.google.com'
     notes 'Gmail is cool'
+    folder
   end
 end
