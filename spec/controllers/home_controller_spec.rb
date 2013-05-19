@@ -4,8 +4,8 @@ describe HomeController do
 
   before do
     FactoryGirl.generate(:email)
-    @folder1 = FactoryGirl.create(:folder_with_records, name: 'Folder1')
-    @folder2 = FactoryGirl.create(:folder_with_records2, name: 'Folder2')
+    @folder1 = FactoryGirl.create(:folder_with_records)
+    @folder2 = FactoryGirl.create(:folder_with_records2)
     @user = FactoryGirl.create(:user) do |user|
       user.folders << @folder1 << @folder2
     end

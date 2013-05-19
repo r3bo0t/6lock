@@ -1,6 +1,5 @@
 class FoldersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :prepare_folders_and_records
 
   def create
     @folder = current_user.folders.build(params[:folder])
@@ -25,9 +24,6 @@ class FoldersController < ApplicationController
         format.js { render :nothing => true }
       end
     end
-  end
-
-  def edit
   end
 
   def destroy
