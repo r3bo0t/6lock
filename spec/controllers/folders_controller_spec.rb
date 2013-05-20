@@ -41,7 +41,7 @@ describe FoldersController do
   describe "DELETE #destroy" do
     context "when the folder belongs to the current user" do
       before do
-        post :destroy, id: @folder1.id, format: 'js'
+        delete :destroy, id: @folder1.id, format: 'js'
       end
 
       it "responds successfully with an HTTP 200 status code" do
@@ -57,7 +57,7 @@ describe FoldersController do
     context "when the folder does not belong to the current user" do
       before do
         @folder3 = FactoryGirl.create(:folder)
-        post :destroy, id: @folder3.id, format: 'js'
+        delete :destroy, id: @folder3.id, format: 'js'
       end
 
       it "responds successfully with an HTTP 200 status code" do
@@ -75,7 +75,7 @@ describe FoldersController do
     context "when the folder belongs to the current user" do
       before do
         @attrs = FactoryGirl.attributes_for(:folder, name: 'new_name')
-        post :update, id: @folder1.id, folder: @attrs, format: 'js'
+        put :update, id: @folder1.id, folder: @attrs, format: 'js'
       end
 
       it "responds successfully with an HTTP 200 status code" do
@@ -100,7 +100,7 @@ describe FoldersController do
       before do
         @folder4 = FactoryGirl.create(:folder)
         @attrs = FactoryGirl.attributes_for(:folder, name: 'new_name')
-        post :update, id: @folder4.id, folder: @attrs, format: 'js'
+        put :update, id: @folder4.id, folder: @attrs, format: 'js'
       end
 
       it "responds successfully with an HTTP 200 status code" do
