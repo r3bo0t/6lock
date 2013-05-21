@@ -356,4 +356,52 @@ describe RecordsController do
     end
   end
 
+  describe "GET #delete_favorite" do
+    context "when the current user owns the record's folder" do
+      before do
+        @record = @folder1.records.first
+        @record.update_attribute(:position, 1)
+        get :delete_favorite, id: @record.id
+      end
+
+      it "redirects to the home path" do
+        expect(response).to redirect_to home_path
+      end
+
+      it "gets the current user's folders" do
+        expect(assigns(:folders)).to include(@folder1, @folder2)
+      end
+
+      it "sets the current record" do
+        expect(assigns(:current_record)).to eq(@record)
+      end
+
+      it "removes the current record's position" do
+        expect(assigns(:current_record).position).to be_nil
+      end
+    end
+
+    context "when the current user does not own the record's folder" do
+      before do
+        @record = FactoryGirl.create(:record)
+        get :delete_favorite, id: @record.id
+      end
+
+      it "redirects to the home path" do
+        expect(response).to redirect_to home_path
+      end
+    end
+
+    context "when not signed in" do
+      before do
+        sign_out @user
+        get :delete_favorite, id: @folder1.records.first.id
+      end
+
+      it "redirects to the sign in path" do
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
+
 end
