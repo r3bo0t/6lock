@@ -1,6 +1,0 @@
-h1. Howdy, Stranger !
-
-You are now browsing the repository for 6LOCK web application.
-
-Please,
-Enjoy : )
