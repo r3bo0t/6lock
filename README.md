@@ -12,12 +12,14 @@
 
 6LOCK will soon be available for testing at [https://6lock.com](https://6lock.com/), so stay tuned.
 
+Anyway you can already use it on your own server if you want it, actually this may be the best use you could make of it.
+
 ## Contributions
 
 Contributions of any kind to this project are greatly appreciated and encouraged.
 
 If you plan on developing a new feature, please open an issue first so that we can discuss the pros and cons.  
-If you actually happen to develop something new, please include tests for the feature you've built.
+If you actually happen to develop something new, please include tests for the feature you've built (considered a bonus).
 
 ## License
 
